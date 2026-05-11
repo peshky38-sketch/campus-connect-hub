@@ -1,4 +1,6 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 * {
   margin: 0;
@@ -6,106 +8,147 @@
   box-sizing: border-box;
 }
 
-/* BODY */
+/* =========================
+   GLOBAL
+========================= */
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f3f4f6;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(180deg, #eef2ff, #f8fafc);
   color: #111827;
   line-height: 1.6;
 }
 
-/* NAVIGATION */
+/* =========================
+   NAVIGATION (APP STYLE)
+========================= */
 
 nav {
-  background-color: #1e3a8a;
+  background: linear-gradient(135deg, #1e3a8a, #4f46e5, #7c3aed);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 18px 8%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
 }
 
 nav h1 {
   color: white;
-  font-size: 28px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 nav ul {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 18px;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
 nav ul li a:hover {
-  color: #c4b5fd;
+  background: rgba(255,255,255,0.2);
 }
 
-/* HERO */
+/* =========================
+   HERO (MODERN APP STYLE)
+========================= */
 
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 90px 20px;
 }
 
 .hero h2 {
-  font-size: 45px;
-  margin-bottom: 20px;
-  color: #1e3a8a;
+  font-size: 44px;
+  background: linear-gradient(90deg, #1e3a8a, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  margin-bottom: 30px;
+  color: #4b5563;
+  font-size: 18px;
+  max-width: 600px;
+  margin: auto;
 }
 
-/* BUTTON */
+/* =========================
+   BUTTONS (MODERN APP FEEL)
+========================= */
 
-.btn {
-  background-color: #7c3aed;
+.btn,
+button {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
   color: white;
-  padding: 14px 24px;
-  text-decoration: none;
-  border-radius: 8px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 15px rgba(124,58,237,0.3);
 }
 
-.btn:hover {
-  background-color: #5b21b6;
+.btn:hover,
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(124,58,237,0.4);
 }
 
-/* STATS */
+/* =========================
+   STATS CARDS
+========================= */
 
 .stats {
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 50px;
+  gap: 20px;
 }
 
 .card {
-  background-color: white;
+  background: white;
   padding: 30px;
-  border-radius: 10px;
-  width: 250px;
+  border-radius: 16px;
+  width: 260px;
   text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
 }
 
-/* ABOUT */
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* =========================
+   SECTIONS (ABOUT ETC)
+========================= */
 
 .about-section,
 .founder-section,
 .mission-section {
-  background-color: white;
+  background: white;
   padding: 30px;
-  margin: 30px;
-  border-radius: 10px;
+  margin: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
-/* RESOURCE PAGE */
+/* =========================
+   RESOURCES (APP GRID FEEL)
+========================= */
 
 .resource-page {
   padding: 40px;
@@ -114,91 +157,134 @@ nav ul li a:hover {
 #searchInput {
   width: 100%;
   padding: 14px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 25px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 10px rgba(124,58,237,0.2);
 }
 
 #resourceContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
 }
 
 .resource-card {
-  background-color: white;
+  background: white;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: 0.3s;
 }
 
 .resource-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
-/* FORM */
+/* =========================
+   FORM (CLEAN APP STYLE)
+========================= */
 
 .form-section {
-  width: 80%;
-  margin: auto;
-  padding: 40px 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #7c3aed, #1e3a8a);
+  padding: 40px 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.form-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: fadeIn 0.8s ease;
 }
+
+.form-container h2 {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
 
 input,
 textarea {
+  width: 100%;
   padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  transition: 0.3s;
 }
 
-button {
-  padding: 14px;
-  border: none;
-  background-color: #1e3a8a;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+input:focus,
+textarea:focus {
+  border-color: #7c3aed;
+  background: white;
+  box-shadow: 0 0 8px rgba(124,58,237,0.2);
 }
 
-button:hover {
-  background-color: #172554;
+textarea {
+  height: 120px;
+  resize: none;
 }
 
-/* ANNOUNCEMENTS */
+/* =========================
+   ANNOUNCEMENTS
+========================= */
 
 .announcement-section {
   padding: 40px;
 }
 
 .announcement-card {
-  background-color: white;
+  background: white;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   text-align: center;
-  background-color: #1e3a8a;
+  background: linear-gradient(90deg, #1e3a8a, #4f46e5);
   color: white;
-  padding: 20px;
+  padding: 22px;
   margin-top: 40px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media screen and (max-width: 768px) {
 
-    nav {
+  nav {
     flex-direction: column;
+    gap: 12px;
   }
 
   nav ul {
@@ -206,78 +292,25 @@ footer {
     text-align: center;
   }
 
- .hero h2 {
+  .hero h2 {
     font-size: 30px;
-  } 
+  }
 
-  .form-section {
-    width: 95%;
+  .stats {
+    flex-direction: column;
+    align-items: center;
   }
 
 }
 
-
-/* ADD RESOURCE PAGE STYLING */
-
-.form-section {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* NICE GRADIENT BACKGROUND */
-  background: linear-gradient(135deg, #1e3a8a, #7c3aed, #4f46e5);
-  padding: 40px 20px;
-}
-
-.form-container {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-
-  padding: 40px;
-  border-radius: 20px;
-
-  width: 100%;
-  max-width: 600px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-}
-.form-container h2 {
-  color: #1e3a8a;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  text-align: center;
-  color: #4b5563;
-  margin-bottom: 25px;
-}
-
-input, textarea {
-  background: #f9fafb;
-  border: 2px solid transparent;
-}
-
-input:focus, textarea:focus {
-  border-color: #7c3aed;
-  background: white;
-}
-
-button {
-  background: linear-gradient(90deg, #7c3aed, #1e3a8a);
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.form-container {
-  animation: fadeIn 0.8s ease-in-out;
-}
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
