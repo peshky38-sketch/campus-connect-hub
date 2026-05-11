@@ -1,21 +1,58 @@
->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   <title>Add Resources</title>
+  <title>Add Resources</title>
+
   <link rel="stylesheet" href="css/style.css"/>
 </head>
- 
-<form>
-<button type="submit">
+
+<body>
+
+<header>
+
+  <nav>
+    <h1>Campus Connect Hub</h1>
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="add.html">Add Resource</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+    </ul>
+
+  </nav>
+
+</header>
+
+<main>
+
+<section class="form-section">
+
+  <h2>Add Academic Resource</h2>
+
+  <!-- FORM START -->
+  <form id="resourceForm">
+
+    <input type="text" id="studentName" placeholder="Student Name" required>
+
+    <input type="text" id="subject" placeholder="Subject" required>
+
+    <input type="text" id="title" placeholder="Resource Title" required>
+
+    <textarea id="description" placeholder="Description" required></textarea>
+
+    <input type="url" id="link" placeholder="Resource Link" required>
+
+    <button type="submit">
       Upload Resource
     </button>
-  
+
   </form>
 
+  <!-- MESSAGE -->
   <p id="message"></p>
 
 </section>
@@ -23,9 +60,11 @@
 </main>
 
 <footer>
-  <p>© 2026 Campus Connect Hub|Learning is fun</p>
+  <p>© 2026 Campus Connect Hub | Learning is fun</p>
 </footer>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>
+
