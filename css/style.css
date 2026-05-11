@@ -5,3 +5,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* BODY */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+  line-height: 1.6;
+}
