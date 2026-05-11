@@ -14,3 +14,30 @@ body {
   color: #111827;
   line-height: 1.6;
 }
+
+/* NAVIGATION */
+
+nav {
+  background-color: #1e3a8a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+nav h1 {
+  color: white;
+  font-size: 28px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
