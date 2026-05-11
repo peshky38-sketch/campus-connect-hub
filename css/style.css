@@ -182,3 +182,13 @@ button:hover {
   margin-bottom: 20px;
   border-radius: 10px;
 }
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  background-color: #1e3a8a;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+}
