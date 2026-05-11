@@ -45,3 +45,20 @@ nav ul li a {
 nav ul li a:hover {
   color: #c4b5fd;
 }
+
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h2 {
+  font-size: 45px;
+  margin-bottom: 20px;
+  color: #1e3a8a;
+}
+
+.hero p {
+  margin-bottom: 30px;
+}
