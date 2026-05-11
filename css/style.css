@@ -3,16 +3,18 @@
 ========================= */
 
 :root {
-  --text: #0f172a;
-  --muted: #64748b;
+  --text: #ffffff;
+  --muted: #dbe4ff;
 
   --primary: #6366f1;
   --secondary: #06b6d4;
   --accent: #f97316;
 
-  --border: #e5e7eb;
-  --shadow: 0 12px 30px rgba(0,0,0,0.10);
-  --radius: 14px;
+  --border: rgba(255,255,255,0.2);
+
+  --shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+  --radius: 18px;
 }
 
 /* =========================
@@ -26,36 +28,47 @@
 }
 
 /* =========================
-   BACKGROUND IMAGE SYSTEM
+   BODY & BACKGROUND
 ========================= */
 
 body {
   font-family: "Inter", "Poppins", sans-serif;
+
   color: var(--text);
-  line-height: 1.6;
+
+  line-height: 1.7;
+
   min-height: 100vh;
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
   position: relative;
+
   display: flex;
   flex-direction: column;
 
-  z-index: 0;
+  overflow-x: hidden;
 }
 
 /* DARK OVERLAY */
+
 body::before {
   content: "";
+
   position: fixed;
+
   inset: 0;
-  background: rgba(156, 116, 221, 0.35);
+
+  background: rgba(8, 12, 40, 0.65);
+
   z-index: -1;
 }
 
 /* KEEP CONTENT ABOVE OVERLAY */
+
 header,
 main,
 footer {
@@ -63,9 +76,10 @@ footer {
   z-index: 1;
 }
 
-/* SCREEN ANIMATION */
+/* PAGE LOAD */
+
 body.screen {
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.8s ease;
 }
 
 /* =========================
@@ -98,78 +112,103 @@ body.announcements {
 
 nav {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
-  padding: 14px 8%;
+  padding: 18px 5%;
 
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.12);
 
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+/* =========================
+   LOGO + TITLE
+========================= */
+
+.logo-container {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-right: auto;
+}
+
+/* BIGGER LOGO */
+
+.logo-img {
+  width: 85px;
+
+  height: 85px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+  animation: pop 1s ease;
+}
+
+/* TITLE TO FAR LEFT */
+
+.logo-text {
+  font-size: 34px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
 
   color: white;
+
+  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
+
+/* =========================
+   NAV LINKS
+========================= */
 
 nav ul {
   display: flex;
-  gap: 12px;
+
+  gap: 14px;
+
   list-style: none;
 }
 
 nav ul li a {
   color: white;
+
   text-decoration: none;
 
-  padding: 8px 12px;
-  border-radius: 10px;
+  padding: 12px 18px;
 
-  transition: 0.3s;
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
 }
 
 nav ul li a:hover {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.18);
+
+  transform: translateY(-2px);
 }
 
 /* =========================
-   LOGO
-========================= */
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.logo-img {
-  width: 60px;
-  height: 60px;
-
-  border-radius: 12px;
-
-  animation: pop 1s ease;
-}
-
-.logo-text {
-  font-weight: 800;
-  font-size: 24px;
-
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    var(--secondary)
-  );
-
-  color: transparent;
-  background-clip: text;
-}
-
-/* =========================
-   MAIN LAYOUT
+   MAIN
 ========================= */
 
 main {
   flex: 1;
+
   padding: 20px;
 }
 
@@ -179,19 +218,30 @@ main {
 
 .hero {
   text-align: center;
-  padding: 100px 20px;
+
+  padding: 120px 20px;
 }
 
 .hero h2 {
-  font-size: 42px;
-  font-weight: 800;
+  font-size: 56px;
+
+  font-weight: 900;
+
   color: white;
+
+  text-shadow: 0 5px 20px rgba(0,0,0,0.45);
+
+  margin-bottom: 18px;
 }
 
 .hero p {
-  color: rgba(255,255,255,0.85);
-  margin-top: 12px;
-  font-size: 18px;
+  font-size: 20px;
+
+  color: rgba(255,255,255,0.9);
+
+  max-width: 700px;
+
+  margin: auto;
 }
 
 /* =========================
@@ -210,26 +260,30 @@ button {
 
   border: none;
 
-  padding: 14px 20px;
+  padding: 16px 24px;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
-  font-weight: 600;
+  font-size: 16px;
+
+  font-weight: 700;
 
   cursor: pointer;
-
-  box-shadow: var(--shadow);
-
-  transition: 0.3s;
 
   text-decoration: none;
 
   display: inline-block;
+
+  margin-top: 25px;
+
+  box-shadow: var(--shadow);
+
+  transition: 0.35s ease;
 }
 
 .btn:hover,
 button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.02);
 
   background: linear-gradient(
     90deg,
@@ -245,26 +299,29 @@ button:hover {
 .card,
 .resource-card,
 .announcement-card,
-.form-container {
-  background: rgba(255,255,255,0.15);
+.form-container,
+.about-section,
+.mission-section,
+.founder-section {
+  background: rgba(255,255,255,0.14);
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 
-  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.18);
 
-  padding: 24px;
+  border-radius: 28px;
 
-  box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+  padding: 30px;
 
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--shadow);
 
-  transition: 0.3s;
+  transition: 0.35s ease;
 }
 
 .card:hover,
 .resource-card:hover,
 .announcement-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
 }
 
 /* =========================
@@ -274,11 +331,21 @@ button:hover {
 .stats {
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 
-  gap: 18px;
+  gap: 24px;
 
   padding: 40px;
+}
+
+.card h3 {
+  font-size: 42px;
+
+  color: white;
+}
+
+.card p {
+  color: rgba(255,255,255,0.8);
 }
 
 /* =========================
@@ -286,59 +353,77 @@ button:hover {
 ========================= */
 
 .about-section,
-.founder-section,
-.mission-section {
-  background: rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(12px);
-
-  padding: 24px;
-
-  margin: 20px;
-
-  border-radius: 20px;
+.mission-section,
+.founder-section {
+  margin: 25px;
 
   color: white;
 }
 
+.about-section h2,
+.mission-section h2,
+.founder-section h2 {
+  margin-bottom: 14px;
+
+  font-size: 32px;
+}
+
 /* =========================
-   RESOURCES PAGE
+   RESOURCES
 ========================= */
 
 .resource-page {
-  padding: 30px;
+  padding: 40px;
 }
 
 .resource-page h2 {
   color: white;
-  margin-bottom: 10px;
+
+  font-size: 42px;
+
+  margin-bottom: 12px;
 }
 
 .subtitle {
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 20px;
+  color: rgba(255,255,255,0.88);
+
+  margin-bottom: 24px;
+
+  font-size: 18px;
 }
 
 #resourceContainer {
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 
-  gap: 20px;
+  gap: 24px;
 }
+
+/* SEARCH */
 
 #searchInput {
   width: 100%;
 
-  padding: 16px;
+  padding: 18px;
 
-  border-radius: 14px;
+  border-radius: 18px;
 
   border: none;
 
-  margin-bottom: 24px;
-
   outline: none;
+
+  font-size: 16px;
+
+  margin-bottom: 30px;
+
+  background: rgba(255,255,255,0.18);
+
+  color: white;
+}
+
+#searchInput::placeholder {
+  color: rgba(255,255,255,0.75);
 }
 
 /* =========================
@@ -347,17 +432,20 @@ button:hover {
 
 .form-section {
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 
-  padding: 80px 20px;
+  padding: 100px 20px;
 }
 
-/* FORM CARD */
+/* FORM CONTAINER */
 
 .form-container {
   width: 100%;
-  max-width: 700px;
+
+  max-width: 950px;
 
   animation: fadeInUp 0.8s ease;
 }
@@ -365,15 +453,15 @@ button:hover {
 /* FORM TITLE */
 
 .form-container h2 {
-  text-align: right;
+  text-align: center;
 
-  font-size: 38px;
+  font-size: 48px;
 
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 
-  color: rgb(57, 17, 167);
+  color: white;
 
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* FORM SUBTEXT */
@@ -381,18 +469,21 @@ button:hover {
 .form-container p {
   text-align: center;
 
-  color: rgba(20, 16, 83, 0.85); 
+  color: rgba(255,255,255,0.88);
 
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+
+  font-size: 18px;
 }
 
 /* FORM LAYOUT */
 
 #resourceForm {
   display: flex;
+
   flex-direction: column;
 
-  gap: 20px;
+  gap: 24px;
 }
 
 /* INPUTS */
@@ -401,30 +492,26 @@ input,
 textarea {
   width: 100%;
 
-  max-width: 950px;
+  padding: 20px;
 
-  padding: 16px;
+  border-radius: 18px;
 
-  border-radius: 16px;
-
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
 
   background: rgba(255,255,255,0.12);
 
-  color: rgb(39, 25, 158);
+  color: white;
 
-  font-size: 15px;
+  font-size: 16px;
 
   outline: none;
 
-  transition: 0.3s;
+  transition: 0.35s ease;
 }
-
-/* PLACEHOLDERS */
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.75);
 }
 
 /* INPUT FOCUS */
@@ -433,7 +520,9 @@ input:focus,
 textarea:focus {
   border-color: var(--secondary);
 
-  box-shadow: 0 0 0 4px rgba(6,182,212,0.18);
+  box-shadow: 0 0 0 5px rgba(6,182,212,0.22);
+
+  background: rgba(255,255,255,0.18);
 
   transform: translateY(-2px);
 }
@@ -441,20 +530,21 @@ textarea:focus {
 /* TEXTAREA */
 
 textarea {
-  min-height: 140px;
+  min-height: 170px;
+
   resize: none;
 }
 
-/* SUCCESS MESSAGE */
+/* MESSAGE */
 
 #message {
-  margin-top: 18px;
+  margin-top: 20px;
 
   text-align: center;
 
-  font-weight: 600;
-
   color: white;
+
+  font-weight: 700;
 }
 
 /* =========================
@@ -464,13 +554,13 @@ textarea {
 footer {
   text-align: center;
 
-  padding: 18px;
+  padding: 22px;
 
-  margin-top: auto;
-
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
 
   color: white;
+
+  backdrop-filter: blur(10px);
 }
 
 /* =========================
@@ -480,7 +570,7 @@ footer {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(1.02);
+    transform: scale(1.03);
   }
 
   to {
@@ -504,7 +594,7 @@ footer {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(35px);
   }
 
   to {
@@ -521,25 +611,39 @@ footer {
 
   nav {
     flex-direction: column;
-    gap: 10px;
+
+    gap: 18px;
   }
 
   nav ul {
     flex-direction: column;
+
     text-align: center;
   }
 
+  .logo-text {
+    font-size: 26px;
+  }
+
+  .logo-img {
+    width: 70px;
+    height: 70px;
+  }
+
   .hero h2 {
-    font-size: 30px;
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 17px;
   }
 
   .form-container {
     padding: 28px;
   }
 
-  .logo-img {
-    width: 50px;
-    height: 50px;
+  .form-container h2 {
+    font-size: 34px;
   }
 
 }
