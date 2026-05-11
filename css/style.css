@@ -9,7 +9,6 @@
   --primary: #6366f1;
   --secondary: #06b6d4;
   --accent: #f97316;
-  --success: #22c55e;
 
   --border: #e5e7eb;
   --shadow: 0 12px 30px rgba(0,0,0,0.10);
@@ -17,74 +16,95 @@
 }
 
 /* =========================
-   GLOBAL BACKGROUND (FIXED)
+   GLOBAL RESET + BASE
 ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Inter", "Poppins", sans-serif;
-  margin: 0;
   color: var(--text);
   line-height: 1.6;
-
-  /* CLEAN MODERN GRADIENT */
-  background: linear-gradient(
-    135deg,
-    #596fb4 0%,
-    #675881 25%,
-    #ece6e9 50%,
-    #9abda4 75%,
-    #d4b5c3 100%
-  );
-
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  transition: 0.4s ease;
 }
 
-main {
-  flex: 1;
+/* SCREEN ANIMATION */
+body.screen {
+  animation: fadeIn 0.6s ease;
 }
 
 /* =========================
-   NAVBAR
+   SCREEN THEMES (APP PAGES)
+========================= */
+
+body.home {
+  background: linear-gradient(135deg, #1e3a8a, #6366f1, #7c3aed);
+}
+
+body.about {
+  background: linear-gradient(135deg, #0f172a, #334155);
+  color: white;
+}
+
+body.resources {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+
+body.add {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+}
+
+/* =========================
+   APP LAYOUT
+========================= */
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* =========================
+   NAVBAR (GLASS APP STYLE)
 ========================= */
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 7%;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-
-nav h1 {
-  color: var(--primary);
-  font-weight: 800;
+  padding: 14px 8%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  color: white;
 }
 
 nav ul {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   list-style: none;
 }
 
 nav ul li a {
+  color: white;
   text-decoration: none;
-  color: var(--muted);
   padding: 8px 12px;
   border-radius: 10px;
   transition: 0.3s;
 }
 
 nav ul li a:hover {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: white;
+  background: rgba(255,255,255,0.25);
 }
 
 /* =========================
-   HERO
+   HERO SECTION
 ========================= */
 
 .hero {
@@ -93,28 +113,24 @@ nav ul li a:hover {
 }
 
 .hero h2 {
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  font-size: 38px;
+  font-weight: 800;
+  color: white;
 }
 
-.hero .btn {
-  margin-top: 25px;
-  display: inline-block;
+.hero p {
+  color: rgba(255,255,255,0.85);
+  margin-top: 10px;
 }
 
 /* =========================
    BUTTONS
 ========================= */
 
-button,
-.btn {
+.btn,
+button {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: rgb(235, 227, 232);
+  color: white;
   border: none;
   padding: 12px 18px;
   border-radius: 12px;
@@ -122,41 +138,38 @@ button,
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
-button:hover,
-.btn:hover {
+.btn:hover,
+button:hover {
   transform: translateY(-3px);
   background: linear-gradient(90deg, var(--accent), var(--primary));
 }
 
 /* =========================
-   SECTION BACKGROUNDS
+   CARDS (UNIFIED SYSTEM)
 ========================= */
 
-.about-section {
-  background: #eef2ff;
-  padding: 22px;
-  margin: 18px;
+.card,
+.resource-card,
+.announcement-card,
+.form-container {
+  background: white;
   border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
 }
 
-.founder-section {
-  background: #ecfeff;
-  padding: 22px;
-  margin: 18px;
-  border-radius: var(--radius);
-}
-
-.mission-section {
-  background: #fff7ed;
-  padding: 22px;
-  margin: 18px;
-  border-radius: var(--radius);
+.card:hover,
+.resource-card:hover {
+  transform: translateY(-6px);
 }
 
 /* =========================
-   CARDS
+   STATS GRID
 ========================= */
 
 .stats {
@@ -166,25 +179,37 @@ button:hover,
   padding: 40px;
 }
 
-.card {
-  background: white;
-  border-radius: var(--radius);
+/* =========================
+   ABOUT SECTIONS
+========================= */
+
+.about-section {
+  background: rgba(255,255,255,0.1);
   padding: 20px;
-  box-shadow: var(--shadow);
-  transition: 0.3s;
+  margin: 18px;
+  border-radius: var(--radius);
 }
 
-.card:hover {
-  transform: translateY(-6px);
+.founder-section {
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  margin: 18px;
+  border-radius: var(--radius);
+}
+
+.mission-section {
+  background: rgba(255,255,255,0.12);
+  padding: 20px;
+  margin: 18px;
+  border-radius: var(--radius);
 }
 
 /* =========================
-   RESOURCE PAGE
+   RESOURCES PAGE
 ========================= */
 
 .resource-page {
   padding: 30px;
-  background: #f0fdf4;
 }
 
 #resourceContainer {
@@ -193,18 +218,18 @@ button:hover,
   gap: 16px;
 }
 
-.resource-card {
-  background: white;
-  padding: 16px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: 0.3s;
+/* SEARCH INPUT */
+#searchInput {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
 }
 
-.resource-card:hover {
-  border-left: 5px solid var(--secondary);
-  transform: translateY(-4px);
-}
+/* =========================
+   FORM SYSTEM (ADD PAGE)
+========================= */
 
 .form-section {
   display: flex;
@@ -212,190 +237,37 @@ button:hover,
   align-items: center;
   padding: 40px;
 }
-/* =========================
-   FORM (VERTICAL MODERN UI)
-========================= */
 
-.form-section {
-  display: flex;
-  justify-content:center;
-  align-items:center ;
-  padding: 40px;
-}
-
-/* FORM CARD */
 .form-container {
   width: 100%;
-  max-width: 700px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: var(--shadow);
+  max-width: 650px;
+  background: rgba(255,255,255,0.95);
 }
 
-/* HEADER */
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--primary);
-  position: relative;
-}
-
-.form-container h2::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  margin: 10px auto 0;
-  border-radius: 10px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-}
-
-/* =========================
-   VERTICAL FORM LAYOUT
-========================= */
-
+/* INPUTS */
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 18p;
+  margin-bottom: 16px;
 }
 
-/* LABEL */
-.input-group label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-/* INPUT BOXES (APPEALING STYLE) */
-.input-group input,
-.input-group textarea,
-.input-group select {
-  padding: 14px 14px;
-  border-radius: 14px;
+input,
+textarea {
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: linear-gradient(135deg, #f9fafb, #ffffff);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
   outline: none;
-  transition: 0.25s;
-  font-size: 14px ;
+  transition: 0.3s;
 }
 
-/* HOVER EFFECT (IMPORTANT FOR "APPEAL") */
-.input-group input:hover,
-.input-group textarea:hover,
-.input-group select:hover {
-  border-color: var(--secondary);
-  transform: translateY(-1px);
-}
-
-/* FOCUS EFFECT */
-.input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus {
+input:focus,
+textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
-  background: #fff;
-}
-
-/* TEXTAREA SIZE */
-.input-group textarea {
-  min-height: 110px;
-  resize: vertical;
 }
 
 /* =========================
-   SUBMIT BUTTON (FORM STYLE BOOST)
-========================= */
-
-.form-container button,
-.form-container .btn {
-  width: 100%;
-  margin-top: 10px;
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 14px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-  .form-container {
-    padding: 25px;
-  }
-}
-
-/* =========================
-   ANNOUNCEMENTS
-========================= */
-
-.announcement-card {
-  background: #fff7ed;
-  padding: 16px;
-  border-left: 5px solid var(--accent);
-  border-radius: var(--radius);
-  margin-bottom: 12px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 18px;
-  background: rgba(255,255,255,0.8);
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-
-/* =========================
-   RESPONSIVE FIX
-========================= */
-
-@media (max-width: 768px) {
-
-  .hero h2 {
-    font-size: 32px;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .input-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .input-group label,
-  .input-group input,
-  .input-group textarea,
-  .input-group select {
-    width: 100%;
-  }
-}
-/* =========================
-   EDUCATION BADGE LOGO
-========================= */
-
-
-nav .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-/* =========================
-   LOGO STYLE
+   LOGO
 ========================= */
 
 .logo-container {
@@ -404,63 +276,74 @@ nav .logo-container {
   gap: 10px;
 }
 
-/* IMAGE LOGO */
 .logo-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  animation: pop 1s ease;
 }
 
-/* TEXT NEXT TO LOGO */
 .logo-text {
-  font-size: 18px;
   font-weight: 800;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-  -webkit-background-clip: text;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: transparent;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
+
 /* =========================
-   LOGO ANIMATION (ON LOAD)
+   FOOTER (FIXED)
 ========================= */
 
-.logo-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-
-  /* animation */
-  animation: logoPop 1.2s ease-out, logoGlow 2.5s ease-in-out 1.2s;
+footer {
+  text-align: center;
+  padding: 18px;
+  margin-top: auto;
+  background: rgba(255,255,255,0.2);
+  color: white;
 }
 
-/* POP IN EFFECT */
-@keyframes logoPop {
-  0% {
-    transform: scale(0.3);
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
+    transform: scale(1.02);
   }
-  60% {
-    transform: scale(1.15);
+  to {
     opacity: 1;
-  }
-  100% {
     transform: scale(1);
   }
 }
 
-/* SOFT GLOW PULSE AFTER LOAD */
-@keyframes logoGlow {
-  0% {
-    box-shadow: 0 0 0 rgba(99,102,241,0);
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
   }
-  50% {
-    box-shadow: 0 0 18px rgba(99,102,241,0.55);
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
-  100% {
-    box-shadow: 0 0 0 rgba(99,102,241,0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 28px;
   }
 }
