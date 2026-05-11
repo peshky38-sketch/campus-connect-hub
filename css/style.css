@@ -41,3 +41,7 @@ nav ul li a {
   text-decoration: none;
   transition: 0.3s;
 }
+
+nav ul li a:hover {
+  color: #c4b5fd;
+}
