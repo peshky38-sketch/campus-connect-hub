@@ -399,7 +399,9 @@ button:hover {
 
 input,
 textarea {
-  width: 300%;
+  width: 100%;
+
+  max-width: 950px;
 
   padding: 16px;
 
