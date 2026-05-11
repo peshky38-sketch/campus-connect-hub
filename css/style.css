@@ -215,3 +215,17 @@ footer {
   }
 
 }
+
+
+/* ADD RESOURCE PAGE STYLING */
+
+.form-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* NICE GRADIENT BACKGROUND */
+  background: linear-gradient(135deg, #1e3a8a, #7c3aed, #4f46e5);
+  padding: 40px 20px;
+}
