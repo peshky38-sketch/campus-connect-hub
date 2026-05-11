@@ -253,3 +253,13 @@ footer {
   color: #4b5563;
   margin-bottom: 25px;
 }
+
+input, textarea {
+  background: #f9fafb;
+  border: 2px solid transparent;
+}
+
+input:focus, textarea:focus {
+  border-color: #7c3aed;
+  background: white;
+}
