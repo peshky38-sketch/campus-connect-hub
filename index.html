@@ -4,47 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Campus Connect Hub</title>
+
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body class="screen home">
 
 <header>
+
   <nav>
 
     <div class="logo-container">
       <img src="./assets/images/logo.png" alt="Campus Connect Hub" class="logo-img">
-      <span class="logo-text">Campus Connect</span>
+
+      <span class="logo-text">
+        Campus Connect
+      </span>
     </div>
 
     <ul>
       <li><a href="index.html">Home</a></li>
+
       <li><a href="about.html">About</a></li>
+
       <li><a href="resources.html">Resources</a></li>
+
       <li><a href="add.html">Add Resource</a></li>
+
       <li><a href="announcements.html">Announcements</a></li>
     </ul>
 
   </nav>
+
 </header>
 
 <main>
 
+  <!-- HERO SECTION -->
+
   <section class="hero">
-    <h2>Your Academic Success Starts Here</h2>
+
+    <h2>
+      Your Academic Success Starts Here
+    </h2>
 
     <p>
       Share resources, manage assignments and stay updated academically.
     </p>
 
-    <a href="resources.html" class="btn">Explore Resources</a>
+    <a href="resources.html" class="btn">
+      Explore Resources
+    </a>
+
   </section>
+
+  <!-- STATS SECTION -->
 
   <section class="stats">
 
     <div class="card">
-      <h3 id="resourceCount">0</h3>
-      <p>Resources Shared</p>
+
+      <h3 id="resourceCount">
+        0
+      </h3>
+
+      <p>
+        Resources Shared
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FORM SECTION -->
+
+  <section class="form-section">
+
+    <div class="form-container">
+
+      <h2>
+        Add Academic Resource
+      </h2>
+
+      <p>
+        Upload and share educational materials with students worldwide.
+      </p>
+
+      <form id="resourceForm">
+
+        <input 
+          type="text" 
+          id="studentName" 
+          placeholder="Student Name" 
+          required
+        >
+
+        <input 
+          type="text" 
+          id="subject" 
+          placeholder="Subject" 
+          required
+        >
+
+        <input 
+          type="text" 
+          id="title" 
+          placeholder="Resource Title" 
+          required
+        >
+
+        <textarea 
+          id="description" 
+          placeholder="Description" 
+          required
+        ></textarea>
+
+        <input 
+          type="url" 
+          id="link" 
+          placeholder="Resource Link" 
+          required
+        >
+
+        <button type="submit">
+          Upload Resource
+        </button>
+
+      </form>
+
+      <p id="message"></p>
+
     </div>
 
   </section>
@@ -52,9 +141,12 @@
 </main>
 
 <footer>
-  <p>© 2026 Campus Connect Hub | Embrace Learning</p>
+  <p>
+    © 2026 Campus Connect Hub | Embrace Learning
+  </p>
 </footer>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>
