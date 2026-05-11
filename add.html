@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Add Resources</title>
 
   <link rel="stylesheet" href="css/style.css"/>
@@ -13,13 +15,18 @@
 <header>
 
   <nav>
+
     <h1>Campus Connect Hub</h1>
 
     <ul>
       <li><a href="index.html">Home</a></li>
+
       <li><a href="about.html">About</a></li>
+
       <li><a href="resources.html">Resources</a></li>
+
       <li><a href="add.html">Add Resource</a></li>
+
       <li><a href="announcements.html">Announcements</a></li>
     </ul>
 
@@ -29,38 +36,78 @@
 
 <main>
 
-<section class="form-section">
+  <section class="form-section">
 
-  <h2>Add Academic Resource</h2>
+    <div class="form-container">
 
-  <!-- FORM START -->
-  <form id="resourceForm">
+      <h2>
+        Add Academic Resource
+      </h2>
 
-    <input type="text" id="studentName" placeholder="Student Name" required>
+      <p>
+        Upload and share educational materials with students worldwide.
+      </p>
 
-    <input type="text" id="subject" placeholder="Subject" required>
+      <!-- FORM START -->
 
-    <input type="text" id="title" placeholder="Resource Title" required>
+      <form id="resourceForm">
 
-    <textarea id="description" placeholder="Description" required></textarea>
+        <input 
+          type="text" 
+          id="studentName" 
+          placeholder="Student Name" 
+          required
+        >
 
-    <input type="url" id="link" placeholder="Resource Link" required>
+        <input 
+          type="text" 
+          id="subject" 
+          placeholder="Subject" 
+          required
+        >
 
-    <button type="submit">
-      Upload Resource
-    </button>
+        <input 
+          type="text" 
+          id="title" 
+          placeholder="Resource Title" 
+          required
+        >
 
-  </form>
+        <textarea 
+          id="description" 
+          placeholder="Description" 
+          required
+        ></textarea>
 
-  <!-- MESSAGE -->
-  <p id="message"></p>
+        <input 
+          type="url" 
+          id="link" 
+          placeholder="Resource Link" 
+          required
+        >
 
-</section>
+        <button type="submit">
+          Upload Resource
+        </button>
+
+      </form>
+
+      <!-- MESSAGE -->
+
+      <p id="message"></p>
+
+    </div>
+
+  </section>
 
 </main>
 
 <footer>
-  <p>© 2026 Campus Connect Hub | Learning is fun</p>
+
+  <p>
+    © 2026 Campus Connect Hub | Learning is fun
+  </p>
+
 </footer>
 
 <script src="js/script.js"></script>
