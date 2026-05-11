@@ -76,3 +76,20 @@ nav ul li a:hover {
 .btn:hover {
   background-color: #5b21b6;
 }
+
+/* STATS */
+
+.stats {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
