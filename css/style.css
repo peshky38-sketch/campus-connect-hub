@@ -384,3 +384,30 @@ footer {
     width: 100%;
   }
 }
+/* =========================
+   EDUCATION BADGE LOGO
+========================= */
+
+.logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: var(--shadow);
+}
+
+.logo-text {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--primary);
+}
+
+nav .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
