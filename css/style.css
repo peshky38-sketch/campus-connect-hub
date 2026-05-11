@@ -135,3 +135,37 @@ nav ul li a:hover {
 .resource-card:hover {
   transform: translateY(-5px);
 }
+
+/* FORM */
+
+.form-section {
+  width: 80%;
+  margin: auto;
+  padding: 40px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input,
+textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 14px;
+  border: none;
+  background-color: #1e3a8a;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #172554;
+}
