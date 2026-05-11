@@ -16,7 +16,7 @@
 }
 
 /* =========================
-   GLOBAL RESET + BASE
+   GLOBAL RESET
 ========================= */
 
 * {
@@ -25,14 +25,40 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   BACKGROUND IMAGE SYSTEM (FIXED)
+========================= */
+
 body {
   font-family: "Inter", "Poppins", sans-serif;
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
   display: flex;
   flex-direction: column;
-  transition: 0.4s ease;
+
+  z-index: 0;
+}
+
+/* DARK OVERLAY (FIXED LAYERING) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(156, 116, 221, 0.35);
+  z-index: -1;
+}
+
+/* Ensure content is above overlay */
+header, main, footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* SCREEN ANIMATION */
@@ -41,37 +67,31 @@ body.screen {
 }
 
 /* =========================
-   SCREEN THEMES (APP PAGES)
+   PAGE BACKGROUNDS
 ========================= */
 
 body.home {
-  background: linear-gradient(135deg, #1e3a8a, #6366f1, #7c3aed);
+  background-image: url("../assets/images/kojo-kwarteng-xl-x9IB6wxc-unsplash.jpg");
 }
 
 body.about {
-  background: linear-gradient(135deg, #0f172a, #334155);
-  color: white;
+  background-image: url("../assets/images/kojo-kwarteng-n5duzZWYReQ-unsplash.jpg");
 }
 
 body.resources {
-  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  background-image: url("../assets/images/cytonn-photography-vWchRczcQwM-unsplash.jpg");
 }
 
 body.add {
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  background-image: url("../assets/images/justin-morgan-xE0RlkfJ41U-unsplash.jpg");
+}
+
+body.announcements {
+  background-image: url("../assets/images/premium_photo-1714265043317-b49141f2197b.avif");
 }
 
 /* =========================
-   APP LAYOUT
-========================= */
-
-main {
-  flex: 1;
-  padding: 20px;
-}
-
-/* =========================
-   NAVBAR (GLASS APP STYLE)
+   NAVBAR (GLASS EFFECT)
 ========================= */
 
 nav {
@@ -79,8 +99,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 14px 8%;
+
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(12px);
+
   border-bottom: 1px solid rgba(255,255,255,0.2);
   color: white;
 }
@@ -104,7 +126,40 @@ nav ul li a:hover {
 }
 
 /* =========================
-   HERO SECTION
+   LOGO
+========================= */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  animation: pop 1s ease;
+}
+
+.logo-text {
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: transparent;
+  background-clip: text;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* =========================
+   HERO
 ========================= */
 
 .hero {
@@ -149,14 +204,15 @@ button:hover {
 }
 
 /* =========================
-   CARDS (UNIFIED SYSTEM)
+   GLASS CARDS SYSTEM
 ========================= */
 
 .card,
 .resource-card,
 .announcement-card,
 .form-container {
-  background: white;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow);
@@ -169,7 +225,7 @@ button:hover {
 }
 
 /* =========================
-   STATS GRID
+   STATS
 ========================= */
 
 .stats {
@@ -183,29 +239,18 @@ button:hover {
    ABOUT SECTIONS
 ========================= */
 
-.about-section {
-  background: rgba(255,255,255,0.1);
-  padding: 20px;
-  margin: 18px;
-  border-radius: var(--radius);
-}
-
-.founder-section {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  margin: 18px;
-  border-radius: var(--radius);
-}
-
+.about-section,
+.founder-section,
 .mission-section {
   background: rgba(255,255,255,0.12);
   padding: 20px;
   margin: 18px;
   border-radius: var(--radius);
+  color: white;
 }
 
 /* =========================
-   RESOURCES PAGE
+   RESOURCES
 ========================= */
 
 .resource-page {
@@ -218,17 +263,16 @@ button:hover {
   gap: 16px;
 }
 
-/* SEARCH INPUT */
 #searchInput {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border: none;
   margin-bottom: 20px;
 }
 
 /* =========================
-   FORM SYSTEM (ADD PAGE)
+   FORM
 ========================= */
 
 .form-section {
@@ -241,18 +285,12 @@ button:hover {
 .form-container {
   width: 100%;
   max-width: 650px;
-  background: rgba(255,255,255,0.95);
 }
 
 /* INPUTS */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-}
-
 input,
 textarea {
+  width: 100%;
   padding: 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -267,38 +305,15 @@ textarea:focus {
 }
 
 /* =========================
-   LOGO
-========================= */
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-img {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  animation: pop 1s ease;
-}
-
-.logo-text {
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: transparent;
-  background-clip: text;
-}
-
-/* =========================
-   FOOTER (FIXED)
+   FOOTER
 ========================= */
 
 footer {
   text-align: center;
   padding: 18px;
   margin-top: auto;
-  background: rgba(255,255,255,0.2);
+
+  background: rgba(255,255,255,0.15);
   color: white;
 }
 
