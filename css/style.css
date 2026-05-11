@@ -388,26 +388,79 @@ footer {
    EDUCATION BADGE LOGO
 ========================= */
 
-.logo-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  box-shadow: var(--shadow);
-}
-
-.logo-text {
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--primary);
-}
 
 nav .logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+/* =========================
+   LOGO STYLE
+========================= */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* IMAGE LOGO */
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* TEXT NEXT TO LOGO */
+.logo-text {
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* =========================
+   LOGO ANIMATION (ON LOAD)
+========================= */
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
+  /* animation */
+  animation: logoPop 1.2s ease-out, logoGlow 2.5s ease-in-out 1.2s;
+}
+
+/* POP IN EFFECT */
+@keyframes logoPop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* SOFT GLOW PULSE AFTER LOAD */
+@keyframes logoGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(99,102,241,0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(99,102,241,0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(99,102,241,0);
+  }
 }
