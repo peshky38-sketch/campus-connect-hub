@@ -260,3 +260,15 @@ if (darkModeBtn) {
   });
 
 }
+
+// ===============================
+// WELCOME ALERT
+// ===============================
+
+window.addEventListener("load", function () {
+
+  console.log(
+    "Welcome to Campus Connect Hub"
+  );
+
+});
