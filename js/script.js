@@ -1,79 +1,71 @@
 // ===============================
-// CAMPUS CONNECT HUB (FIXED SYSTEM)
+// CAMPUS CONNECT HUB SYSTEM
 // ===============================
 
 /* =========================================================
-   AUTH SYSTEM (TEACHER / STUDENT)
+   GLOBAL STATE
 ========================================================= */
 
 let currentUser = null;
 
-// login function (teacher or student)
-function loginUser(role) {
-
-  const password =
-    document.getElementById("loginPassword").value.trim();
-
-  const status =
-    document.getElementById("loginStatus");
-
-  if (!password) return;
-
-  // SIMPLE PASSWORD SYSTEM (you can improve later)
-  const teacherPass = "teacher123";
-  const studentPass = "student123";
-
-  if (password === teacherPass && role === "teacher") {
-
-    currentUser = { role: "teacher" };
-
-    showPopup("Teacher login successful");
-
-    document.getElementById("loginBox").style.display = "none";
-
-    showAnnouncements();
-
-  }
-
-  else if (password === studentPass && role === "student") {
-
-    currentUser = { role: "student" };
-
-    showPopup("Student login successful");
-
-    document.getElementById("loginBox").style.display = "none";
-
-    showChat();
-    showResources();
-
-  }
-
-  else {
-
-    status.textContent = "Wrong password";
-    status.style.color = "red";
-
-  }
-
-}
-
 /* =========================================================
-   POPUP
+   POPUP SYSTEM
 ========================================================= */
 
 function showPopup(message) {
-
   const popup = document.createElement("div");
-
   popup.className = "popup-notification";
-
   popup.textContent = message;
 
   document.body.appendChild(popup);
 
   setTimeout(() => popup.remove(), 2500);
-
 }
+
+/* =========================================================
+   AUTH SYSTEM (TEACHER / STUDENT)
+// ========================================================= */
+
+function loginUser(role) {
+
+  const password = document.getElementById("loginPassword")?.value.trim();
+  const status = document.getElementById("loginStatus");
+
+  const teacherPass = "teacher123";
+  const studentPass = "student123";
+
+  if (!password) return;
+
+  if (role === "teacher" && password === teacherPass) {
+
+    currentUser = { role: "teacher" };
+    showPopup("Teacher login successful");
+
+    document.getElementById("loginBox").style.display = "none";
+
+    showAnnouncements();
+    return;
+  }
+
+  if (role === "student" && password === studentPass) {
+
+    currentUser = { role: "student" };
+    showPopup("Student login successful");
+
+    document.getElementById("loginBox").style.display = "none";
+
+    showResources();
+    showChat();
+    return;
+  }
+
+  if (status) {
+    status.textContent = "Wrong password";
+    status.style.color = "red";
+  }
+}
+
+window.loginUser = loginUser;
 
 /* =========================================================
    ANNOUNCEMENTS (TEACHER ONLY)
@@ -89,11 +81,8 @@ function addAnnouncement() {
     return;
   }
 
-  const title =
-    document.getElementById("announcementTitle").value.trim();
-
-  const message =
-    document.getElementById("announcementMessage").value.trim();
+  const title = document.getElementById("announcementTitle")?.value.trim();
+  const message = document.getElementById("announcementMessage")?.value.trim();
 
   if (!title || !message) return;
 
@@ -105,17 +94,15 @@ function addAnnouncement() {
 
   localStorage.setItem("announcements", JSON.stringify(announcements));
 
-  document.getElementById("announcementForm").reset();
+  document.getElementById("announcementForm")?.reset();
 
   showAnnouncements();
-
+  showPopup("Announcement posted");
 }
 
 function showAnnouncements() {
 
-  const box =
-    document.getElementById("announcementContainer");
-
+  const box = document.getElementById("announcementContainer");
   if (!box) return;
 
   box.innerHTML = "";
@@ -124,22 +111,18 @@ function showAnnouncements() {
 
     box.innerHTML += `
       <div class="announcement-card">
-
         <h3>${a.title}</h3>
-
         <p>${a.message}</p>
-
         <small>${new Date(a.time).toLocaleString()}</small>
-
       </div>
     `;
-
   });
-
 }
 
+window.addAnnouncement = addAnnouncement;
+
 /* =========================================================
-   RESOURCES (STUDENTS)
+   RESOURCES (STUDENTS ONLY)
 ========================================================= */
 
 let resources =
@@ -152,14 +135,9 @@ function addResource() {
     return;
   }
 
-  const name =
-    document.getElementById("studentName").value.trim();
-
-  const title =
-    document.getElementById("title").value.trim();
-
-  const link =
-    document.getElementById("link").value.trim();
+  const name = document.getElementById("studentName")?.value.trim();
+  const title = document.getElementById("title")?.value.trim();
+  const link = document.getElementById("link")?.value.trim();
 
   if (!name || !title || !link) return;
 
@@ -173,14 +151,12 @@ function addResource() {
   localStorage.setItem("resources", JSON.stringify(resources));
 
   showResources();
-
+  showPopup("Resource added");
 }
 
 function showResources() {
 
-  const box =
-    document.getElementById("resourceContainer");
-
+  const box = document.getElementById("resourceContainer");
   if (!box) return;
 
   box.innerHTML = "";
@@ -189,26 +165,19 @@ function showResources() {
 
     box.innerHTML += `
       <div class="resource-card">
-
         <h3>${r.title}</h3>
-
         <p>By: ${r.name}</p>
-
-        <a href="${r.link}" target="_blank">
-          Open
-        </a>
-
+        <a href="${r.link}" target="_blank">Open</a>
         <small>${new Date(r.time).toLocaleString()}</small>
-
       </div>
     `;
-
   });
-
 }
 
+window.addResource = addResource;
+
 /* =========================================================
-   CHAT (STUDENTS ONLY)
+   CHAT SYSTEM (STUDENTS ONLY)
 ========================================================= */
 
 let chat =
@@ -221,15 +190,12 @@ function sendMessage() {
     return;
   }
 
-  const name =
-    document.getElementById("chatName").value.trim();
-
-  const message =
-    document.getElementById("chatMessage").value.trim();
+  const name = document.getElementById("chatName")?.value.trim();
+  const message = document.getElementById("chatMessage")?.value.trim();
 
   if (!name || !message) return;
 
-  chat.push({
+  chat.unshift({
     name,
     message,
     time: new Date()
@@ -240,14 +206,11 @@ function sendMessage() {
   document.getElementById("chatMessage").value = "";
 
   showChat();
-
 }
 
 function showChat() {
 
-  const box =
-    document.getElementById("chatBox");
-
+  const box = document.getElementById("chatBox");
   if (!box) return;
 
   box.innerHTML = "";
@@ -256,34 +219,20 @@ function showChat() {
 
     box.innerHTML += `
       <div class="chat-message">
-
         <strong>${c.name}</strong>
-
         <p>${c.message}</p>
-
         <small>${new Date(c.time).toLocaleTimeString()}</small>
-
       </div>
     `;
-
   });
-
 }
 
+window.sendMessage = sendMessage;
+
 /* =========================================================
-   INIT LOAD
+   INIT
 ========================================================= */
 
 showAnnouncements();
 showResources();
 showChat();
-
-/* =========================================================
-   GLOBAL FUNCTIONS
-========================================================= */
-
-window.loginUser = loginUser;
-window.addAnnouncement = addAnnouncement;
-window.addResource = addResource;
-window.sendMessage = sendMessage;
-
