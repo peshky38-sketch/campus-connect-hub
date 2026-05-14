@@ -59,3 +59,7 @@ if (resourceForm) {
       description,
       link
     };
+    // GET EXISTING DATA
+
+    let resources =
+      JSON.parse(localStorage.getItem("resources")) || [];
