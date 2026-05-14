@@ -6,82 +6,168 @@
    RESOURCE SYSTEM
 ========================================================= */
 
-const resourceForm = document.getElementById("resourceForm");
+const resourceForm =
+  document.getElementById("resourceForm");
 
 if (resourceForm) {
+
   resourceForm.addEventListener("submit", function (e) {
+
     e.preventDefault();
 
-    const studentName = document.getElementById("studentName").value.trim();
-    const subject = document.getElementById("subject").value.trim();
-    const title = document.getElementById("title").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const link = document.getElementById("link").value.trim();
-    const message = document.getElementById("message");
+    const studentName =
+      document.getElementById("studentName").value.trim();
 
-    if (!studentName || !subject || !title || !description || !link) {
+    const subject =
+      document.getElementById("subject").value.trim();
+
+    const title =
+      document.getElementById("title").value.trim();
+
+    const description =
+      document.getElementById("description").value.trim();
+
+    const link =
+      document.getElementById("link").value.trim();
+
+    const message =
+      document.getElementById("message");
+
+    // VALIDATION
+
+    if (
+      !studentName ||
+      !subject ||
+      !title ||
+      !description ||
+      !link
+    ) {
+
       message.style.color = "red";
-      message.textContent = "Please fill in all fields.";
+
+      message.textContent =
+        "Please fill in all fields.";
+
       return;
     }
 
-    const resource = { studentName, subject, title, description, link };
+    // RESOURCE OBJECT
 
-    let resources = JSON.parse(localStorage.getItem("resources")) || [];
+    const resource = {
+      studentName,
+      subject,
+      title,
+      description,
+      link
+    };
+
+    // GET EXISTING RESOURCES
+
+    let resources =
+      JSON.parse(localStorage.getItem("resources")) || [];
+
+    // ADD NEW RESOURCE
+
     resources.push(resource);
 
-    localStorage.setItem("resources", JSON.stringify(resources));
+    // SAVE
+
+    localStorage.setItem(
+      "resources",
+      JSON.stringify(resources)
+    );
+
+    // SUCCESS MESSAGE
 
     message.style.color = "green";
-    message.textContent = "Resource uploaded successfully!";
+
+    message.textContent =
+      "Resource uploaded successfully.";
+
+    // RESET FORM
 
     resourceForm.reset();
+
+    // UPDATE COUNTER
+
     updateResourceCounter();
+
+    // REFRESH DISPLAY
+
+    displayResources();
+
   });
+
 }
 
 /* =========================================================
    DISPLAY RESOURCES
 ========================================================= */
 
-const resourceContainer = document.getElementById("resourceContainer");
+const resourceContainer =
+  document.getElementById("resourceContainer");
 
 function displayResources() {
+
   if (!resourceContainer) return;
 
-  const resources = JSON.parse(localStorage.getItem("resources")) || [];
+  const resources =
+    JSON.parse(localStorage.getItem("resources")) || [];
 
   resourceContainer.innerHTML = "";
 
   if (resources.length === 0) {
-    resourceContainer.innerHTML = `<p class="empty-message">No resources uploaded yet.</p>`;
+
+    resourceContainer.innerHTML = `
+      <p class="empty-message">
+        No resources uploaded yet.
+      </p>
+    `;
+
     return;
   }
 
-  resources.forEach((resource, index) => {
-    const card = document.createElement("div");
+  resources.forEach(function (resource, index) {
+
+    const card =
+      document.createElement("div");
+
     card.classList.add("resource-card");
 
     card.innerHTML = `
       <h3>${resource.title}</h3>
+
       <p>${resource.description}</p>
 
-      <p><strong>Subject:</strong> ${resource.subject}</p>
-      <p><strong>Uploaded By:</strong> ${resource.studentName}</p>
+      <p>
+        <strong>Subject:</strong>
+        ${resource.subject}
+      </p>
 
-      <a href="${resource.link}" target="_blank">Open Resource</a>
+      <p>
+        <strong>Uploaded By:</strong>
+        ${resource.studentName}
+      </p>
 
-      <button onclick="deleteResource(${index})">Delete</button>
+      <a href="${resource.link}" target="_blank">
+        Open Resource
+      </a>
+
+      <button onclick="deleteResource(${index})">
+        Delete
+      </button>
     `;
 
     resourceContainer.appendChild(card);
+
   });
 
-  localStorage.setItem("resources", JSON.stringify(resources));
 }
 
 if (resourceContainer) {
+
   displayResources();
+
 }
 
 /* =========================================================
@@ -89,12 +175,21 @@ if (resourceContainer) {
 ========================================================= */
 
 function deleteResource(index) {
-  let resources = JSON.parse(localStorage.getItem("resources")) || [];
+
+  let resources =
+    JSON.parse(localStorage.getItem("resources")) || [];
+
   resources.splice(index, 1);
 
-  localStorage.setItem("resources", JSON.stringify(resources));
+  localStorage.setItem(
+    "resources",
+    JSON.stringify(resources)
+  );
+
   displayResources();
+
   updateResourceCounter();
+
 }
 
 /* =========================================================
@@ -102,12 +197,18 @@ function deleteResource(index) {
 ========================================================= */
 
 function updateResourceCounter() {
-  const counter = document.getElementById("resourceCount");
+
+  const counter =
+    document.getElementById("resourceCount");
 
   if (!counter) return;
 
-  const resources = JSON.parse(localStorage.getItem("resources")) || [];
-  counter.textContent = resources.length;
+  const resources =
+    JSON.parse(localStorage.getItem("resources")) || [];
+
+  counter.textContent =
+    resources.length;
+
 }
 
 updateResourceCounter();
@@ -116,12 +217,17 @@ updateResourceCounter();
    DARK MODE
 ========================================================= */
 
-const darkModeBtn = document.getElementById("darkModeBtn");
+const darkModeBtn =
+  document.getElementById("darkModeBtn");
 
 if (darkModeBtn) {
+
   darkModeBtn.addEventListener("click", function () {
+
     document.body.classList.toggle("dark-mode");
+
   });
+
 }
 
 /* =========================================================
@@ -129,204 +235,394 @@ if (darkModeBtn) {
 ========================================================= */
 
 window.addEventListener("scroll", function () {
-  document.querySelectorAll(".resource-card, .announcement-card").forEach(card => {
-    const position = card.getBoundingClientRect().top;
+
+  const cards =
+    document.querySelectorAll(
+      ".resource-card, .announcement-card, .card"
+    );
+
+  cards.forEach(function (card) {
+
+    const position =
+      card.getBoundingClientRect().top;
 
     if (position < window.innerHeight - 100) {
+
       card.classList.add("show");
+
     }
+
   });
+
 });
 
 /* =========================================================
    ANNOUNCEMENTS SYSTEM
 ========================================================= */
 
-let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+let announcements =
+  JSON.parse(localStorage.getItem("announcements")) || [];
+
 let editIndex = null;
+
 let isAdmin = false;
 
-/* =========================
+/* =========================================================
    ADMIN LOGIN
-========================= */
+========================================================= */
 
 function loginAdmin() {
-  const passwordInput = document.getElementById("adminPassword");
-  const status = document.getElementById("adminStatus");
+
+  const passwordInput =
+    document.getElementById("adminPassword");
+
+  const status =
+    document.getElementById("adminStatus");
 
   if (!passwordInput || !status) return;
 
-  const password = passwordInput.value.trim();
+  const password =
+    passwordInput.value.trim();
+
+  // PASSWORD
 
   if (password === "admin") {
+
     isAdmin = true;
 
-    const form = document.getElementById("announcementForm");
-    const loginBox = document.getElementById("adminLoginBox");
+    const form =
+      document.getElementById("announcementForm");
 
-    if (form) form.style.display = "block";
-    if (loginBox) loginBox.style.display = "none";
+    const loginBox =
+      document.getElementById("adminLoginBox");
 
-    showPopup("Admin login successful");
+    if (form) {
+
+      form.style.display = "block";
+
+    }
+
+    if (loginBox) {
+
+      loginBox.style.display = "none";
+
+    }
+
+    renderAnnouncements();
+
+    showPopup(
+      "Admin login successful."
+    );
+
   } else {
-    status.textContent = "Wrong password!";
+
+    status.textContent =
+      "Wrong password.";
+
     status.style.color = "red";
+
   }
+
 }
 
-/* =========================
-   POPUP
-========================= */
+/* =========================================================
+   POPUP NOTIFICATION
+========================================================= */
 
 function showPopup(message) {
-  const popup = document.createElement("div");
-  popup.className = "popup-notification";
-  popup.textContent = message;
+
+  const popup =
+    document.createElement("div");
+
+  popup.className =
+    "popup-notification";
+
+  popup.textContent =
+    message;
 
   document.body.appendChild(popup);
 
-  setTimeout(() => popup.remove(), 2500);
+  setTimeout(function () {
+
+    popup.remove();
+
+  }, 2500);
+
 }
 
-/* =========================
+/* =========================================================
    TIME AGO
-========================= */
+========================================================= */
 
 function timeAgo(date) {
-  let seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
-  if (seconds < 60) return "Just now";
-  let minutes = Math.floor(seconds / 60);
-  if (minutes < 60) return `${minutes} min ago`;
-  let hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours} hr ago`;
-  let days = Math.floor(hours / 24);
+  let seconds =
+    Math.floor(
+      (new Date() - new Date(date)) / 1000
+    );
+
+  if (seconds < 60) {
+
+    return "Just now";
+
+  }
+
+  let minutes =
+    Math.floor(seconds / 60);
+
+  if (minutes < 60) {
+
+    return `${minutes} min ago`;
+
+  }
+
+  let hours =
+    Math.floor(minutes / 60);
+
+  if (hours < 24) {
+
+    return `${hours} hr ago`;
+
+  }
+
+  let days =
+    Math.floor(hours / 24);
+
   return `${days} days ago`;
+
 }
 
-/* =========================
+/* =========================================================
    RENDER ANNOUNCEMENTS
-========================= */
+========================================================= */
 
 function renderAnnouncements() {
-  const container = document.getElementById("announcementContainer");
+
+  const container =
+    document.getElementById("announcementContainer");
+
   if (!container) return;
 
   container.innerHTML = "";
 
-  announcements.forEach((a, index) => {
+  announcements.forEach(function (a, index) {
+
+    let adminButtons = "";
+
+    // SHOW ONLY FOR ADMIN
+
+    if (isAdmin) {
+
+      adminButtons = `
+        <div class="announcement-actions">
+
+          <button onclick="editAnnouncement(${index})">
+            Edit
+          </button>
+
+          <button onclick="deleteAnnouncement(${index})">
+            Delete
+          </button>
+
+        </div>
+      `;
+
+    }
+
     container.innerHTML += `
       <div class="announcement-card">
+
         <h3>${a.title}</h3>
+
         <p>${a.message}</p>
 
-        <small>Posted: ${timeAgo(a.time)}</small>
+        <small>
+          Posted: ${timeAgo(a.time)}
+        </small>
 
-        <button onclick="editAnnouncement(${index})">Edit</button>
-        <button onclick="deleteAnnouncement(${index})">Delete</button>
+        ${adminButtons}
+
       </div>
     `;
+
   });
 
-  localStorage.setItem("announcements", JSON.stringify(announcements));
+  // SAVE
+
+  localStorage.setItem(
+    "announcements",
+    JSON.stringify(announcements)
+  );
+
 }
 
-/* =========================
-   FORM HANDLER (SAFE)
-========================= */
+/* =========================================================
+   ANNOUNCEMENT FORM
+========================================================= */
 
-const announcementForm = document.getElementById("announcementForm");
+const announcementForm =
+  document.getElementById("announcementForm");
 
 if (announcementForm) {
-  announcementForm.addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    if (!isAdmin) {
-      showPopup("Please login as admin first ");
-      return;
+  announcementForm.addEventListener(
+    "submit",
+    function (e) {
+
+      e.preventDefault();
+
+      if (!isAdmin) {
+
+        showPopup(
+          "Please login as admin first."
+        );
+
+        return;
+
+      }
+
+      const title =
+        document.getElementById("announcementTitle").value.trim();
+
+      const message =
+        document.getElementById("announcementMessage").value.trim();
+
+      // VALIDATION
+
+      if (!title || !message) {
+
+        showPopup(
+          "Fill in all fields."
+        );
+
+        return;
+
+      }
+
+      // ADD NEW
+
+      if (editIndex === null) {
+
+        announcements.unshift({
+
+          title,
+          message,
+          time: new Date()
+
+        });
+
+        showPopup(
+          "Announcement posted."
+        );
+
+      }
+
+      // EDIT
+
+      else {
+
+        announcements[editIndex].title =
+          title;
+
+        announcements[editIndex].message =
+          message;
+
+        showPopup(
+          "Announcement updated."
+        );
+
+        editIndex = null;
+
+      }
+
+      // RESET
+
+      announcementForm.reset();
+
+      // REFRESH
+
+      renderAnnouncements();
+
     }
+  );
 
-    const title = document.getElementById("announcementTitle").value.trim();
-    const message = document.getElementById("announcementMessage").value.trim();
-
-    if (!title || !message) {
-      showPopup("Fill in all fields!");
-      return;
-    }
-
-    if (editIndex === null) {
-      announcements.unshift({
-        title,
-        message,
-        time: new Date()
-      });
-
-      showPopup("Announcement posted ");
-    } else {
-      announcements[editIndex].title = title;
-      announcements[editIndex].message = message;
-
-      showPopup("Announcement updated ");
-      editIndex = null;
-    }
-
-    this.reset();
-    renderAnnouncements();
-  });
 }
 
-/* =========================
-   DELETE
-========================= */
+/* =========================================================
+   DELETE ANNOUNCEMENT
+========================================================= */
 
 function deleteAnnouncement(index) {
+
   if (!isAdmin) {
-    showPopup("Admin only action ");
+
+    showPopup(
+      "Admin only action."
+    );
+
     return;
+
   }
 
   announcements.splice(index, 1);
+
   renderAnnouncements();
 
-  showPopup("Announcement deleted ");
+  showPopup(
+    "Announcement deleted."
+  );
+
 }
 
-/* =========================
-   EDIT
-========================= */
+/* =========================================================
+   EDIT ANNOUNCEMENT
+========================================================= */
 
 function editAnnouncement(index) {
+
   if (!isAdmin) {
-    showPopup("Admin only action ");
+
+    showPopup(
+      "Admin only action."
+    );
+
     return;
+
   }
 
-  document.getElementById("announcementTitle").value =
+  document.getElementById(
+    "announcementTitle"
+  ).value =
     announcements[index].title;
 
-  document.getElementById("announcementMessage").value =
+  document.getElementById(
+    "announcementMessage"
+  ).value =
     announcements[index].message;
 
   editIndex = index;
+
 }
 
-/* =========================
+/* =========================================================
    INIT
-========================= */
+========================================================= */
 
 renderAnnouncements();
 
-/* =========================
-   INIT
-========================= */
-
-renderAnnouncements();
-
-/* =========================
+/* =========================================================
    GLOBAL FUNCTIONS
-========================= */
+========================================================= */
 
-window.loginAdmin = loginAdmin;
-window.editAnnouncement = editAnnouncement;
-window.deleteAnnouncement = deleteAnnouncement;
+window.loginAdmin =
+  loginAdmin;
+
+window.editAnnouncement =
+  editAnnouncement;
+
+window.deleteAnnouncement =
+  deleteAnnouncement;
+
+window.deleteResource =
+  deleteResource;
 
