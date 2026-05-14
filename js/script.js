@@ -186,3 +186,37 @@ function deleteResource(index) {
 // ===============================
 // SEARCH FUNCTIONALITY
 // ===============================
+
+const searchInput =
+  document.getElementById("searchInput");
+
+if (searchInput) {
+
+  searchInput.addEventListener("keyup", function () {
+
+    const searchValue =
+      searchInput.value.toLowerCase();
+
+    const cards =
+      document.querySelectorAll(".resource-card");
+
+    cards.forEach(function (card) {
+
+      const text =
+        card.textContent.toLowerCase();
+
+      if (text.includes(searchValue)) {
+
+        card.style.display = "block";
+
+      } else {
+
+        card.style.display = "none";
+
+      }
+
+    });
+
+  });
+
+}
