@@ -95,3 +95,30 @@ if (resourceForm) {
 // ===============================
 // DISPLAY RESOURCES
 // ===============================
+
+const resourceContainer =
+  document.getElementById("resourceContainer");
+
+if (resourceContainer) {
+
+  displayResources();
+
+}
+
+function displayResources() {
+
+  const resources =
+    JSON.parse(localStorage.getItem("resources")) || [];
+
+  resourceContainer.innerHTML = "";
+
+  if (resources.length === 0) {
+
+    resourceContainer.innerHTML = `
+      <p class="empty-message">
+        No resources uploaded yet.
+      </p>
+    `;
+
+    return;
+  }
