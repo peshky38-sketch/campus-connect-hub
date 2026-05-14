@@ -11,9 +11,7 @@
 
 <body class="screen announcements">
 
-  <!-- =============================== -->
   <!-- HEADER -->
-  <!-- =============================== -->
   <header>
     <nav>
       <h1>Campus Connect Hub</h1>
@@ -31,18 +29,18 @@
   <main>
 
     <!-- =============================== -->
+    <!-- ADMIN LOGIN -->
+    <!-- =============================== -->
+    <div id="adminLoginBox">
+      <input type="password" id="adminPassword" placeholder="Enter admin password">
+      <button type="button" onclick="loginAdmin()">Login</button>
+      <p id="adminStatus"></p>
+    </div>
+
+    <!-- =============================== -->
     <!-- ANNOUNCEMENT FORM -->
     <!-- =============================== -->
-   <div id="adminLoginBox">
-  <input type="password" id="adminPassword" placeholder="Enter admin password">
-
-  <button type="button" onclick="loginAdmin()">Login</button>
-
-  <p id="adminStatus"></p>
-
-</div>
- 
-<section class="announcement-form-section">
+    <section class="announcement-form-section">
 
       <div class="announcement-form-container">
 
@@ -52,7 +50,7 @@
           Post important academic updates for students.
         </p>
 
-       <form id="announcementForm" style="display:none;">
+        <form id="announcementForm" style="display:none;">
 
           <input
             type="text"
@@ -73,35 +71,30 @@
 
         </form>
 
-        <!-- SUCCESS MESSAGE -->
         <p id="announcementMessageBox"></p>
 
       </div>
 
     </section>
 
-    <!-- =============================== -->
-    <!-- DISPLAY ANNOUNCEMENTS -->
-    <!-- =============================== -->
+    <!-- DISPLAY -->
     <section class="announcement-section">
 
       <h2>Latest Announcements</h2>
 
-      <!-- JS will inject announcements here -->
       <div id="announcementContainer"></div>
 
     </section>
 
   </main>
 
-  <!-- =============================== -->
   <!-- FOOTER -->
-  <!-- =============================== -->
   <footer>
     <p>© 2026 Campus Connect Hub | Education is life</p>
   </footer>
 
-  <script src="js/script.js"></script>
+  <!--  FIXED SCRIPT LINK -->
+  <script src="js/announcements.js"></script>
 
 </body>
 </html>
