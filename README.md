@@ -60,3 +60,31 @@ The purpose of this project is to:
 └── assets/
 └── images/
 └── logo.png
+
+
+---
+
+## 📌 How to Run
+1. Download or clone the project  
+2. Open folder in VS Code  
+3. Open `index.html` in browser  
+4. Start using the system  
+
+---
+
+## 📈 Future Improvements
+- Add login system for students and teachers  
+- Add database (Firebase/MySQL)  
+- Improve mobile responsiveness  
+- Add real-time chat system  
+- Add file uploads for resources  
+
+---
+
+## License
+This project is for educational purposes only.
+
+---
+
+##  Acknowledgement
+Special thanks to students for supporting this platform during development.
