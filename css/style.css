@@ -131,7 +131,7 @@ nav {
 ========================= */
 
 .logo-container {
-  display: block;
+  display: flex;
 
   align-items: center;
 
@@ -143,13 +143,11 @@ nav {
 /* BIGGER LOGO */
 
 .logo-img {
-  width: 85px;
+  width: 40px;
 
-  height: 85px;
+  height: 40px;
 
-  border: 2px solid red;
-
-  object-fit: fit;
+  object-fit: contain;
 
   border-radius: 18px;
 
@@ -672,4 +670,4 @@ footer {
     transform: translateX(0);
     opacity: 1;
   }
-}
+} 
