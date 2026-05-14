@@ -302,7 +302,7 @@ const cards =
 });
 
 // ===============================
-// ANNOUNCEMENTS
+// ANNOUNCEMENT FORM FUNCTION
 // ===============================
 
 const announcementForm =
@@ -314,26 +314,62 @@ if (announcementForm) {
 
     e.preventDefault();
 
+    // INPUT VALUES
+
     const title =
-    document.getElementById("announcementTitle").value;
+    document.getElementById("announcementTitle").value.trim();
 
     const message =
-    document.getElementById("announcementMessage").value;
+    document.getElementById("announcementMessage").value.trim();
+
+    const date =
+    new Date().toLocaleDateString();
+
+    // VALIDATION
+
+    if (title === "" || message === "") {
+
+      alert("Please fill in all fields.");
+
+      return;
+
+    }
+
+    // ANNOUNCEMENT OBJECT
 
     const announcement = {
-      title,
-      message
+
+      title: title,
+
+      message: message,
+
+      date: date
+
     };
+
+    // GET EXISTING ANNOUNCEMENTS
 
     let announcements =
     JSON.parse(localStorage.getItem("announcements")) || [];
 
+    // ADD NEW ANNOUNCEMENT
+
     announcements.push(announcement);
+
+    // SAVE TO LOCAL STORAGE
 
     localStorage.setItem(
       "announcements",
       JSON.stringify(announcements)
     );
+
+    // SUCCESS MESSAGE
+
+    alert("Announcement posted successfully!");
+
+    // RESET FORM
+
+    announcementForm.reset();
 
   });
 
