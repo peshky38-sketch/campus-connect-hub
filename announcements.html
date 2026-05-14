@@ -33,7 +33,16 @@
     <!-- =============================== -->
     <!-- ANNOUNCEMENT FORM -->
     <!-- =============================== -->
-    <section class="announcement-form-section">
+   <div id="adminLoginBox">
+  <input type="password" id="adminPassword" placeholder="Enter admin password">
+
+  <button type="button" onclick="loginAdmin()">Login</button>
+
+  <p id="adminStatus"></p>
+
+</div>
+ 
+<section class="announcement-form-section">
 
       <div class="announcement-form-container">
 
@@ -43,7 +52,7 @@
           Post important academic updates for students.
         </p>
 
-        <form id="announcementForm">
+       <form id="announcementForm" style="display:none;">
 
           <input
             type="text"
