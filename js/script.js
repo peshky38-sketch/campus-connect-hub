@@ -122,3 +122,41 @@ function displayResources() {
 
     return;
   }
+
+  resources.forEach(function (resource, index) {
+
+    const card =
+      document.createElement("div");
+
+    card.classList.add("resource-card");
+
+    card.innerHTML = `
+      <h3>${resource.title}</h3>
+
+      <p>${resource.description}</p>
+
+      <p>
+        <strong>Subject:</strong>
+        ${resource.subject}
+      </p>
+
+      <p>
+        <strong>Uploaded By:</strong>
+        ${resource.studentName}
+      </p>
+
+      <a href="${resource.link}" target="_blank">
+        Open Resource
+      </a>
+
+      <button class="delete-btn"
+        onclick="deleteResource(${index})">
+        Delete
+      </button>
+    `;
+
+    resourceContainer.appendChild(card);
+
+  });
+
+}
