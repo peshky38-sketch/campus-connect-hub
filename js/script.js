@@ -66,3 +66,10 @@ if (resourceForm) {
       // PUSH NEW DATA
 
     resources.push(resource);
+
+    // SAVE TO LOCAL STORAGE
+
+    localStorage.setItem(
+      "resources",
+      JSON.stringify(resources)
+    );
