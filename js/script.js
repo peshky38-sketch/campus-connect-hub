@@ -158,7 +158,7 @@ function loginAdmin() {
 
   const password = passwordInput.value.trim();
 
-  if (password === "admin123") {
+  if (password === "admin") {
     isAdmin = true;
 
     const form = document.getElementById("announcementForm");
