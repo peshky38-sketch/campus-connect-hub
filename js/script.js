@@ -63,3 +63,6 @@ if (resourceForm) {
 
     let resources =
       JSON.parse(localStorage.getItem("resources")) || [];
+      // PUSH NEW DATA
+
+    resources.push(resource);
