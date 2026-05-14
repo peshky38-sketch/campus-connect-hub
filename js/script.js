@@ -300,3 +300,10 @@ const cards =
   });
 
 });
+
+// ===============================
+// ANNOUNCEMENTS
+// ===============================
+
+const announcementForm =
+document.getElementById("announcementForm");
