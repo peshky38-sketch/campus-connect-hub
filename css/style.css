@@ -131,7 +131,7 @@ nav {
 ========================= */
 
 .logo-container {
-  display: flex;
+  display: block;
 
   align-items: center;
 
@@ -147,7 +147,9 @@ nav {
 
   height: 85px;
 
-  object-fit: cover;
+  border: 2px solid red;
+
+  object-fit: fit;
 
   border-radius: 18px;
 

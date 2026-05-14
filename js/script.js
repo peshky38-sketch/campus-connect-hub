@@ -1,238 +1,263 @@
 // ===============================
-// CAMPUS CONNECT HUB SYSTEM
+// CAMPUS CONNECT HUB JAVASCRIPT
 // ===============================
 
 /* =========================================================
-   GLOBAL STATE
+   RESOURCE SYSTEM
 ========================================================= */
 
-let currentUser = null;
+const resourceForm = document.getElementById("resourceForm");
 
-/* =========================================================
-   POPUP SYSTEM
-========================================================= */
+if (resourceForm) {
 
-function showPopup(message) {
-  const popup = document.createElement("div");
-  popup.className = "popup-notification";
-  popup.textContent = message;
+  resourceForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  document.body.appendChild(popup);
+    const studentName = document.getElementById("studentName").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const title = document.getElementById("title").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const link = document.getElementById("link").value.trim();
+    const message = document.getElementById("message");
 
-  setTimeout(() => popup.remove(), 2500);
-}
+    if (!studentName || !subject || !title || !description || !link) {
+      message.style.color = "red";
+      message.textContent = "Please fill in all fields.";
+      return;
+    }
 
-/* =========================================================
-   AUTH SYSTEM (TEACHER / STUDENT)
-// ========================================================= */
+    const resource = {
+      studentName,
+      subject,
+      title,
+      description,
+      link
+    };
 
-function loginUser(role) {
+    let resources = JSON.parse(localStorage.getItem("resources")) || [];
+    resources.push(resource);
 
-  const password = document.getElementById("loginPassword")?.value.trim();
-  const status = document.getElementById("loginStatus");
+    localStorage.setItem("resources", JSON.stringify(resources));
 
-  const teacherPass = "teacher123";
-  const studentPass = "student123";
+    message.style.color = "green";
+    message.textContent = "Resource uploaded successfully!";
 
-  if (!password) return;
-
-  if (role === "teacher" && password === teacherPass) {
-
-    currentUser = { role: "teacher" };
-    showPopup("Teacher login successful");
-
-    document.getElementById("loginBox").style.display = "none";
-
-    showAnnouncements();
-    return;
-  }
-
-  if (role === "student" && password === studentPass) {
-
-    currentUser = { role: "student" };
-    showPopup("Student login successful");
-
-    document.getElementById("loginBox").style.display = "none";
-
-    showResources();
-    showChat();
-    return;
-  }
-
-  if (status) {
-    status.textContent = "Wrong password";
-    status.style.color = "red";
-  }
-}
-
-window.loginUser = loginUser;
-
-/* =========================================================
-   ANNOUNCEMENTS (TEACHER ONLY)
-========================================================= */
-
-let announcements =
-  JSON.parse(localStorage.getItem("announcements")) || [];
-
-function addAnnouncement() {
-
-  if (!currentUser || currentUser.role !== "teacher") {
-    showPopup("Only teachers can post announcements");
-    return;
-  }
-
-  const title = document.getElementById("announcementTitle")?.value.trim();
-  const message = document.getElementById("announcementMessage")?.value.trim();
-
-  if (!title || !message) return;
-
-  announcements.unshift({
-    title,
-    message,
-    time: new Date()
+    resourceForm.reset();
+    updateResourceCounter();
+    displayResources();
   });
-
-  localStorage.setItem("announcements", JSON.stringify(announcements));
-
-  document.getElementById("announcementForm")?.reset();
-
-  showAnnouncements();
-  showPopup("Announcement posted");
 }
 
-function showAnnouncements() {
+/* =========================================================
+   DISPLAY RESOURCES
+========================================================= */
 
-  const box = document.getElementById("announcementContainer");
-  if (!box) return;
+const resourceContainer = document.getElementById("resourceContainer");
 
-  box.innerHTML = "";
+function displayResources() {
 
-  announcements.forEach(a => {
+  if (!resourceContainer) return;
 
-    box.innerHTML += `
-      <div class="announcement-card">
-        <h3>${a.title}</h3>
-        <p>${a.message}</p>
-        <small>${new Date(a.time).toLocaleString()}</small>
-      </div>
+  const resources = JSON.parse(localStorage.getItem("resources")) || [];
+
+  resourceContainer.innerHTML = "";
+
+  if (resources.length === 0) {
+    resourceContainer.innerHTML = "<p>No resources uploaded yet.</p>";
+    return;
+  }
+
+  resources.forEach((resource, index) => {
+
+    const card = document.createElement("div");
+    card.classList.add("resource-card");
+
+    card.innerHTML = `
+      <h3>${resource.title}</h3>
+      <p>${resource.description}</p>
+      <p><strong>Subject:</strong> ${resource.subject}</p>
+      <p><strong>Uploaded By:</strong> ${resource.studentName}</p>
+      <a href="${resource.link}" target="_blank">Open Resource</a>
+      <button onclick="deleteResource(${index})">Delete</button>
     `;
+
+    resourceContainer.appendChild(card);
   });
 }
 
-window.addAnnouncement = addAnnouncement;
+if (resourceContainer) displayResources();
 
 /* =========================================================
-   RESOURCES (STUDENTS ONLY)
+   DELETE RESOURCE
 ========================================================= */
 
-let resources =
-  JSON.parse(localStorage.getItem("resources")) || [];
-
-function addResource() {
-
-  if (!currentUser || currentUser.role !== "student") {
-    showPopup("Only students can upload resources");
-    return;
-  }
-
-  const name = document.getElementById("studentName")?.value.trim();
-  const title = document.getElementById("title")?.value.trim();
-  const link = document.getElementById("link")?.value.trim();
-
-  if (!name || !title || !link) return;
-
-  resources.unshift({
-    name,
-    title,
-    link,
-    time: new Date()
-  });
-
+function deleteResource(index) {
+  let resources = JSON.parse(localStorage.getItem("resources")) || [];
+  resources.splice(index, 1);
   localStorage.setItem("resources", JSON.stringify(resources));
-
-  showResources();
-  showPopup("Resource added");
+  displayResources();
+  updateResourceCounter();
 }
 
-function showResources() {
+/* =========================================================
+   RESOURCE COUNTER
+========================================================= */
 
-  const box = document.getElementById("resourceContainer");
-  if (!box) return;
+function updateResourceCounter() {
+  const counter = document.getElementById("resourceCount");
 
-  box.innerHTML = "";
+  if (!counter) return;
 
-  resources.forEach(r => {
+  const resources = JSON.parse(localStorage.getItem("resources")) || [];
+  counter.textContent = resources.length;
+}
 
-    box.innerHTML += `
-      <div class="resource-card">
-        <h3>${r.title}</h3>
-        <p>By: ${r.name}</p>
-        <a href="${r.link}" target="_blank">Open</a>
-        <small>${new Date(r.time).toLocaleString()}</small>
-      </div>
-    `;
+updateResourceCounter();
+
+/* =========================================================
+   ANNOUNCEMENTS SYSTEM (NEW)
+========================================================= */
+
+let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+let editIndex = null;
+
+const announcementForm = document.getElementById("announcementForm");
+const announcementContainer = document.getElementById("announcementContainer");
+
+/* ADD / EDIT ANNOUNCEMENT */
+
+if (announcementForm) {
+
+  announcementForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const title = document.getElementById("announcementTitle").value.trim();
+    const message = document.getElementById("announcementMessage").value.trim();
+
+    if (!title || !message) return;
+
+    if (editIndex === null) {
+
+      announcements.unshift({
+        title,
+        message,
+        time: new Date()
+      });
+
+    } else {
+
+      announcements[editIndex].title = title;
+      announcements[editIndex].message = message;
+      editIndex = null;
+    }
+
+    localStorage.setItem("announcements", JSON.stringify(announcements));
+
+    announcementForm.reset();
+    renderAnnouncements();
   });
 }
 
-window.addResource = addResource;
+/* RENDER ANNOUNCEMENTS */
 
-/* =========================================================
-   CHAT SYSTEM (STUDENTS ONLY)
-========================================================= */
+function renderAnnouncements() {
 
-let chat =
-  JSON.parse(localStorage.getItem("chat")) || [];
+  if (!announcementContainer) return;
 
-function sendMessage() {
+  announcementContainer.innerHTML = "";
 
-  if (!currentUser || currentUser.role !== "student") {
-    showPopup("Only students can chat");
+  if (announcements.length === 0) {
+    announcementContainer.innerHTML = "<p>No announcements yet.</p>";
     return;
   }
 
-  const name = document.getElementById("chatName")?.value.trim();
-  const message = document.getElementById("chatMessage")?.value.trim();
+  announcements.forEach((a, index) => {
 
-  if (!name || !message) return;
+    const card = document.createElement("div");
+    card.classList.add("announcement-card");
 
-  chat.unshift({
-    name,
-    message,
-    time: new Date()
-  });
+    card.innerHTML = `
+      <h3>${a.title}</h3>
+      <p>${a.message}</p>
+      <small>${new Date(a.time).toLocaleString()}</small>
 
-  localStorage.setItem("chat", JSON.stringify(chat));
-
-  document.getElementById("chatMessage").value = "";
-
-  showChat();
-}
-
-function showChat() {
-
-  const box = document.getElementById("chatBox");
-  if (!box) return;
-
-  box.innerHTML = "";
-
-  chat.forEach(c => {
-
-    box.innerHTML += `
-      <div class="chat-message">
-        <strong>${c.name}</strong>
-        <p>${c.message}</p>
-        <small>${new Date(c.time).toLocaleTimeString()}</small>
-      </div>
+      <button onclick="editAnnouncement(${index})">Edit</button>
+      <button onclick="deleteAnnouncement(${index})">Delete</button>
     `;
+
+    announcementContainer.appendChild(card);
   });
 }
 
-window.sendMessage = sendMessage;
+if (announcementContainer) renderAnnouncements();
+
+/* DELETE ANNOUNCEMENT */
+
+function deleteAnnouncement(index) {
+  announcements.splice(index, 1);
+  localStorage.setItem("announcements", JSON.stringify(announcements));
+  renderAnnouncements();
+}
+
+/* EDIT ANNOUNCEMENT */
+
+function editAnnouncement(index) {
+  document.getElementById("announcementTitle").value = announcements[index].title;
+  document.getElementById("announcementMessage").value = announcements[index].message;
+  editIndex = index;
+}
 
 /* =========================================================
-   INIT
+   SEARCH FUNCTIONALITY
 ========================================================= */
 
-showAnnouncements();
-showResources();
-showChat();
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+  searchInput.addEventListener("keyup", function () {
+
+    const searchValue = searchInput.value.toLowerCase();
+    const cards = document.querySelectorAll(".resource-card");
+
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(searchValue) ? "block" : "none";
+    });
+
+  });
+
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const darkModeBtn = document.getElementById("darkModeBtn");
+
+if (darkModeBtn) {
+
+  darkModeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+
+}
+
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+window.addEventListener("scroll", function () {
+
+  document.querySelectorAll(".resource-card, .announcement-card, .card")
+    .forEach(card => {
+
+      const position = card.getBoundingClientRect().top;
+
+      if (position < window.innerHeight - 100) {
+        card.classList.add("show");
+      }
+
+    });
+
+});

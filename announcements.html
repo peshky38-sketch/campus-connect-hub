@@ -2,84 +2,62 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Announcements | Campus Connect Hub</title>
-
   <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body class="screen announcements">
 
-  <!-- HEADER -->
+<header>
+  <nav>
+    <h1>Campus Connect Hub</h1>
 
-  <header>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="add.html">Add Resources</a></li>
+      <li><a href="announcements.html">Announcements</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <nav>
+<main>
 
-      <h1>Campus Connect Hub</h1>
+  <section class="announcement-form-section">
 
-      <ul>
-
-        <li><a href="index.html">Home</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="announcements.html">Announcements</a></li>
-        <li><a href="chat.html">Chat</a></li>
-
-      </ul>
-
-    </nav>
-
-  </header>
-
-  <!-- LOGIN -->
-
-  <div id="loginBox">
-
-    <h3>Login</h3>
-
-    <input type="password" id="loginPassword">
-
-    <button onclick="loginUser('teacher')">Teacher Login</button>
-
-    <button onclick="loginUser('student')">Student Login</button>
-
-    <p id="loginStatus"></p>
-
-  </div>
-
-  <!-- FORM -->
-
-  <section>
+    <h2>Create Announcement</h2>
 
     <form id="announcementForm">
 
-      <input id="announcementTitle" placeholder="Title">
+      <input type="text" id="announcementTitle" placeholder="Announcement Title" required>
 
-      <textarea id="announcementMessage" placeholder="Message"></textarea>
+      <textarea id="announcementMessage" placeholder="Write your message here" required></textarea>
 
-      <button type="button" onclick="addAnnouncement()">
-        Post
-      </button>
+      <button type="submit">Post Announcement</button>
 
     </form>
 
   </section>
 
-  <!-- DISPLAY -->
+  <section class="announcement-list-section">
 
-  <section>
+    <h2>All Announcements</h2>
 
     <div id="announcementContainer"></div>
 
   </section>
 
-  <script src="js/script.js"></script>
+</main>
+
+<footer>
+  <p>© 2026 Campus Connect Hub</p>
+</footer>
+
+<script src="js/script.js"></script>
 
 </body>
-
 </html>
+
