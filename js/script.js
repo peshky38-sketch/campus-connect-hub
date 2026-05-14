@@ -316,3 +316,11 @@ if (announcementForm) {
 
     const title =
     document.getElementById("announcementTitle").value;
+
+    const message =
+    document.getElementById("announcementMessage").value;
+
+    const announcement = {
+      title,
+      message
+    };
