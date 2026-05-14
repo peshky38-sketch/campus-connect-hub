@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Student Chat | Campus Connect Hub</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="screen chat">
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <nav>
+
+      <div class="logo-container">
+
+        <img src="./assets/images/logo.png" class="logo-img" alt="logo">
+
+        <span class="logo-text">
+          Campus Connect Hub
+        </span>
+
+      </div>
+
+      <ul>
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li><a href="resources.html">Resources</a></li>
+
+        <li><a href="add.html">Add Resource</a></li>
+
+        <li><a href="announcements.html">Announcements</a></li>
+
+        <li><a href="chat.html">Chat</a></li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- =========================
+       MAIN CHAT AREA
+  ========================== -->
+
+  <main>
+
+    <section class="chat-section">
+
+      <h2>Student Chat Room</h2>
+
+      <p>Talk, share ideas, and collaborate with classmates.</p>
+
+      <!-- CHAT BOX -->
+
+      <div id="chatBox" class="chat-box"></div>
+
+      <!-- INPUT AREA -->
+
+      <form id="chatForm" class="chat-form">
+
+        <input
+          type="text"
+          id="chatName"
+          placeholder="Your name"
+          required
+        >
+
+        <input
+          type="text"
+          id="chatMessage"
+          placeholder="Type a message..."
+          required
+        >
+
+        <button type="submit">
+          Send
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <p>
+      © 2026 Campus Connect Hub | Learn Together
+    </p>
+
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
