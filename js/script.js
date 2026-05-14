@@ -11,3 +11,23 @@ if (resourceForm) {
   resourceForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
+
+    // INPUT VALUES
+
+    const studentName =
+      document.getElementById("studentName").value.trim();
+
+    const subject =
+      document.getElementById("subject").value.trim();
+
+    const title =
+      document.getElementById("title").value.trim();
+
+    const description =
+      document.getElementById("description").value.trim();
+
+    const link =
+      document.getElementById("link").value.trim();
+
+    const message =
+      document.getElementById("message");
