@@ -45,3 +45,18 @@ The purpose of this project is to:
 ---
 
 ## Project Structure
+├── index.html
+├── about.html
+├── resources.html
+├── add.html
+├── announcements.html
+│
+├── css/
+│ └── style.css
+│
+├── js/
+│ └── script.js
+│
+└── assets/
+└── images/
+└── logo.png
