@@ -44,6 +44,9 @@ The purpose of this project is to:
 
 ---
 
+## Live Site 
+https://peshky38-sketch.github.io/campus-connect-hub/
+
 ## Project Structure
 ├── index.html
 ├── about.html
@@ -65,7 +68,7 @@ The purpose of this project is to:
 ---
 
 ## How to Run
-1. Download or clone the project  
+1. Download or clone the project: https://github.com/peshky38-sketch/campus-connect-hub
 2. Open folder in VS Code  
 3. Open `index.html` in browser  
 4. Start using the system  
