@@ -374,3 +374,142 @@ if (announcementForm) {
   });
 
 }
+let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+let editIndex = null;
+let isAdmin = false;
+
+// ==============================
+// ADMIN LOGIN (SIMPLE DEMO)
+// ==============================
+function loginAdmin() {
+  const password = document.getElementById("adminPassword").value;
+  const status = document.getElementById("adminStatus");
+
+  // change this password anytime
+  if (password === "admin123") {
+    isAdmin = true;
+    document.getElementById("announcementForm").style.display = "block";
+    document.getElementById("adminLoginBox").style.display = "none";
+    status.textContent = "";
+
+    showPopup("Admin login successful ✔");
+  } else {
+    status.textContent = "Wrong password!";
+    status.style.color = "red";
+  }
+}
+
+// ==============================
+// POPUP NOTIFICATION
+// ==============================
+function showPopup(message) {
+  const popup = document.createElement("div");
+  popup.className = "popup-notification";
+  popup.textContent = message;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 3000);
+}
+
+// ==============================
+// TIME FORMAT
+// ==============================
+function timeAgo(date) {
+  let seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+  if (seconds < 60) return "Just now";
+  let minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes} min ago`;
+  let hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours} hr ago`;
+  let days = Math.floor(hours / 24);
+  return `${days} days ago`;
+}
+
+// ==============================
+// DISPLAY
+// ==============================
+function renderAnnouncements() {
+  const container = document.getElementById("announcementContainer");
+  container.innerHTML = "";
+
+  announcements.forEach((a, index) => {
+    container.innerHTML += `
+      <div class="announcement-card">
+        <h3>${a.title}</h3>
+        <p>${a.message}</p>
+
+        <small class="timestamp">Posted: ${timeAgo(a.time)}</small>
+
+        <div class="announcement-actions">
+          <button onclick="editAnnouncement(${index})">Edit</button>
+          <button onclick="deleteAnnouncement(${index})">Delete</button>
+        </div>
+      </div>
+    `;
+  });
+
+  localStorage.setItem("announcements", JSON.stringify(announcements));
+}
+
+// ==============================
+// ADD / EDIT (ADMIN ONLY)
+// ==============================
+document.getElementById("announcementForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (!isAdmin) return;
+
+  const title = document.getElementById("announcementTitle").value;
+  const message = document.getElementById("announcementMessage").value;
+
+  if (editIndex === null) {
+    announcements.unshift({
+      title,
+      message,
+      time: new Date()
+    });
+
+    showPopup("New announcement posted 📢");
+  } else {
+    announcements[editIndex].title = title;
+    announcements[editIndex].message = message;
+
+    showPopup("Announcement updated ✏️");
+    editIndex = null;
+  }
+
+  this.reset();
+  renderAnnouncements();
+});
+
+// ==============================
+// DELETE
+// ==============================
+function deleteAnnouncement(index) {
+  if (!isAdmin) return;
+
+  announcements.splice(index, 1);
+  renderAnnouncements();
+
+  showPopup("Announcement deleted 🗑️");
+}
+
+// ==============================
+// EDIT
+// ==============================
+function editAnnouncement(index) {
+  if (!isAdmin) return;
+
+  document.getElementById("announcementTitle").value = announcements[index].title;
+  document.getElementById("announcementMessage").value = announcements[index].message;
+  editIndex = index;
+}
+
+// ==============================
+// INIT
+// ==============================
+renderAnnouncements();
