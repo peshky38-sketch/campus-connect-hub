@@ -221,3 +221,25 @@ if (searchInput) {
 
 }
 
+// ===============================
+// RESOURCE COUNTER
+// ===============================
+
+function updateResourceCounter() {
+
+  const resourceCount =
+    document.getElementById("resourceCount");
+
+  if (resourceCount) {
+
+    const resources =
+      JSON.parse(localStorage.getItem("resources")) || [];
+
+    resourceCount.textContent =
+      resources.length;
+
+  }
+
+}
+
+updateResourceCounter();
