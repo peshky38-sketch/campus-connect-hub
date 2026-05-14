@@ -243,3 +243,7 @@ function updateResourceCounter() {
 }
 
 updateResourceCounter();
+
+// ===============================
+// DARK MODE
+// ===============================
