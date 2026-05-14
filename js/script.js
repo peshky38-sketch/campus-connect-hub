@@ -324,3 +324,8 @@ if (announcementForm) {
       title,
       message
     };
+
+    let announcements =
+    JSON.parse(localStorage.getItem("announcements")) || [];
+
+    announcements.push(announcement);
