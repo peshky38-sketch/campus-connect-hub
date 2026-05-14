@@ -10,119 +10,89 @@
 </head>
 
 <body class="screen announcements">
- 
+
   <!-- =============================== -->
-<!-- ANNOUNCEMENT FORM -->
-<!-- =============================== -->
+  <!-- HEADER -->
+  <!-- =============================== -->
+  <header>
+    <nav>
+      <h1>Campus Connect Hub</h1>
 
-<section class="announcement-form-section">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="add.html">Add Resource</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="announcement-form-container">
+  <main>
 
-    <h2>Share Announcement</h2>
+    <!-- =============================== -->
+    <!-- ANNOUNCEMENT FORM -->
+    <!-- =============================== -->
+    <section class="announcement-form-section">
 
-    <p class="announcement-subtitle">
-      Post important academic updates for students.
-    </p>
+      <div class="announcement-form-container">
 
-    <form id="announcementForm">
+        <h2>Share Announcement</h2>
 
-      <!-- TITLE -->
+        <p class="announcement-subtitle">
+          Post important academic updates for students.
+        </p>
 
-      <input
-        type="text"
-        id="announcementTitle"
-        placeholder="Enter Announcement Title"
-      >
+        <form id="announcementForm">
 
-      <!-- MESSAGE -->
+          <input
+            type="text"
+            id="announcementTitle"
+            placeholder="Enter Announcement Title"
+            required
+          >
 
-      <textarea
-        id="announcementMessage"
-        placeholder="Write your announcement here..."
-      ></textarea>
+          <textarea
+            id="announcementMessage"
+            placeholder="Write your announcement here..."
+            required
+          ></textarea>
 
-      <!-- BUTTON -->
+          <button type="submit">
+            Post Announcement
+          </button>
 
-      <button type="submit">
-        Post Announcement
-      </button>
+        </form>
 
-    </form>
+        <!-- SUCCESS MESSAGE -->
+        <p id="announcementMessageBox"></p>
 
-    <!-- SUCCESS MESSAGE -->
+      </div>
 
-    <p id="announcementMessageBox"></p>
+    </section>
 
-  </div>
+    <!-- =============================== -->
+    <!-- DISPLAY ANNOUNCEMENTS -->
+    <!-- =============================== -->
+    <section class="announcement-section">
 
-</section>
+      <h2>Latest Announcements</h2>
 
-<!-- =============================== -->
-<!-- DISPLAY ANNOUNCEMENTS -->
-<!-- =============================== -->
+      <!-- JS will inject announcements here -->
+      <div id="announcementContainer"></div>
 
-<section class="announcement-section">
+    </section>
 
-  <h2>Latest Announcements</h2>
+  </main>
 
-  <div id="announcementContainer"></div>
+  <!-- =============================== -->
+  <!-- FOOTER -->
+  <!-- =============================== -->
+  <footer>
+    <p>© 2026 Campus Connect Hub | Education is life</p>
+  </footer>
 
-</section>
-
-<header>
-
-  <nav>
-
-    <h1>Campus Connect Hub</h1>
-
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="add.html">Add Resource</a></li>
-      <li><a href="announcements.html">Announcements</a></li>
-    </ul>
-
-  </nav>
-
-</header>
-
-<main>
-
-  <section class="announcement-section">
-
-    <h2>Latest Announcements</h2>
-
-    <div class="announcement-card">
-
-      <h3>CAT Exams Begin Monday</h3>
-
-      <p>
-        Students are advised to prepare accordingly and revise all topics.
-      </p>
-
-    </div>
-
-    <div class="announcement-card">
-
-      <h3>Assignment Deadline</h3>
-
-      <p>
-        Submit all assignments before Friday to avoid penalties.
-      </p>
-
-    </div>
-
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2026 Campus Connect Hub | Education is life</p>
-</footer>
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 </html>
