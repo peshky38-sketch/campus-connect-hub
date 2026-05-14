@@ -160,3 +160,29 @@ function displayResources() {
   });
 
 }
+
+// ===============================
+// DELETE RESOURCE
+// ===============================
+
+function deleteResource(index) {
+
+  let resources =
+    JSON.parse(localStorage.getItem("resources")) || [];
+
+  resources.splice(index, 1);
+
+  localStorage.setItem(
+    "resources",
+    JSON.stringify(resources)
+  );
+
+  displayResources();
+
+  updateResourceCounter();
+
+}
+
+// ===============================
+// SEARCH FUNCTIONALITY
+// ===============================
