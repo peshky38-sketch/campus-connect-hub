@@ -329,3 +329,12 @@ if (announcementForm) {
     JSON.parse(localStorage.getItem("announcements")) || [];
 
     announcements.push(announcement);
+
+    localStorage.setItem(
+      "announcements",
+      JSON.stringify(announcements)
+    );
+
+  });
+
+}
