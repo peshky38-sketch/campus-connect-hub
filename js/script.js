@@ -49,3 +49,13 @@ if (resourceForm) {
 
       return;
     }
+
+    // RESOURCE OBJECT
+
+    const resource = {
+      studentName,
+      subject,
+      title,
+      description,
+      link
+    };
