@@ -272,3 +272,12 @@ window.addEventListener("load", function () {
   );
 
 });
+
+// ===============================
+// SCROLL ANIMATION
+// ===============================
+
+const cards =
+  document.querySelectorAll(
+    ".resource-card, .announcement-card, .card"
+  );
