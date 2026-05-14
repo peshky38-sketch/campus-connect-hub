@@ -283,3 +283,7 @@ const cards =
   );
 
   window.addEventListener("scroll", function () {
+    cards.forEach(function (card) {
+
+    const position =
+      card.getBoundingClientRect().top;
