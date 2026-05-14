@@ -73,3 +73,25 @@ if (resourceForm) {
       "resources",
       JSON.stringify(resources)
     );
+    // SUCCESS MESSAGE
+
+    message.style.color = "green";
+
+    message.textContent =
+      "Resource uploaded successfully!";
+
+    // RESET FORM
+
+    resourceForm.reset();
+
+    // UPDATE COUNTER
+
+    updateResourceCounter();
+
+  });
+
+}
+
+// ===============================
+// DISPLAY RESOURCES
+// ===============================
