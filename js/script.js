@@ -1,324 +1,56 @@
 // ===============================
-// CAMPUS CONNECT HUB JAVASCRIPT
+// CAMPUS CONNECT HUB (FIXED SYSTEM)
 // ===============================
 
 /* =========================================================
-   RESOURCE SYSTEM
+   AUTH SYSTEM (TEACHER / STUDENT)
 ========================================================= */
 
-const resourceForm =
-  document.getElementById("resourceForm");
+let currentUser = null;
 
-if (resourceForm) {
-
-  resourceForm.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    const studentName =
-      document.getElementById("studentName").value.trim();
-
-    const subject =
-      document.getElementById("subject").value.trim();
-
-    const title =
-      document.getElementById("title").value.trim();
-
-    const description =
-      document.getElementById("description").value.trim();
-
-    const link =
-      document.getElementById("link").value.trim();
-
-    const message =
-      document.getElementById("message");
-
-    // VALIDATION
-
-    if (
-      !studentName ||
-      !subject ||
-      !title ||
-      !description ||
-      !link
-    ) {
-
-      message.style.color = "red";
-
-      message.textContent =
-        "Please fill in all fields.";
-
-      return;
-    }
-
-    // RESOURCE OBJECT
-
-    const resource = {
-      studentName,
-      subject,
-      title,
-      description,
-      link
-    };
-
-    // GET EXISTING RESOURCES
-
-    let resources =
-      JSON.parse(localStorage.getItem("resources")) || [];
-
-    // ADD NEW RESOURCE
-
-    resources.push(resource);
-
-    // SAVE
-
-    localStorage.setItem(
-      "resources",
-      JSON.stringify(resources)
-    );
-
-    // SUCCESS MESSAGE
-
-    message.style.color = "green";
-
-    message.textContent =
-      "Resource uploaded successfully.";
-
-    // RESET FORM
-
-    resourceForm.reset();
-
-    // UPDATE COUNTER
-
-    updateResourceCounter();
-
-    // REFRESH DISPLAY
-
-    displayResources();
-
-  });
-
-}
-
-/* =========================================================
-   DISPLAY RESOURCES
-========================================================= */
-
-const resourceContainer =
-  document.getElementById("resourceContainer");
-
-function displayResources() {
-
-  if (!resourceContainer) return;
-
-  const resources =
-    JSON.parse(localStorage.getItem("resources")) || [];
-
-  resourceContainer.innerHTML = "";
-
-  if (resources.length === 0) {
-
-    resourceContainer.innerHTML = `
-      <p class="empty-message">
-        No resources uploaded yet.
-      </p>
-    `;
-
-    return;
-  }
-
-  resources.forEach(function (resource, index) {
-
-    const card =
-      document.createElement("div");
-
-    card.classList.add("resource-card");
-
-    card.innerHTML = `
-      <h3>${resource.title}</h3>
-
-      <p>${resource.description}</p>
-
-      <p>
-        <strong>Subject:</strong>
-        ${resource.subject}
-      </p>
-
-      <p>
-        <strong>Uploaded By:</strong>
-        ${resource.studentName}
-      </p>
-
-      <a href="${resource.link}" target="_blank">
-        Open Resource
-      </a>
-
-      <button onclick="deleteResource(${index})">
-        Delete
-      </button>
-    `;
-
-    resourceContainer.appendChild(card);
-
-  });
-
-}
-
-if (resourceContainer) {
-
-  displayResources();
-
-}
-
-/* =========================================================
-   DELETE RESOURCE
-========================================================= */
-
-function deleteResource(index) {
-
-  let resources =
-    JSON.parse(localStorage.getItem("resources")) || [];
-
-  resources.splice(index, 1);
-
-  localStorage.setItem(
-    "resources",
-    JSON.stringify(resources)
-  );
-
-  displayResources();
-
-  updateResourceCounter();
-
-}
-
-/* =========================================================
-   RESOURCE COUNTER
-========================================================= */
-
-function updateResourceCounter() {
-
-  const counter =
-    document.getElementById("resourceCount");
-
-  if (!counter) return;
-
-  const resources =
-    JSON.parse(localStorage.getItem("resources")) || [];
-
-  counter.textContent =
-    resources.length;
-
-}
-
-updateResourceCounter();
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-const darkModeBtn =
-  document.getElementById("darkModeBtn");
-
-if (darkModeBtn) {
-
-  darkModeBtn.addEventListener("click", function () {
-
-    document.body.classList.toggle("dark-mode");
-
-  });
-
-}
-
-/* =========================================================
-   SCROLL ANIMATION
-========================================================= */
-
-window.addEventListener("scroll", function () {
-
-  const cards =
-    document.querySelectorAll(
-      ".resource-card, .announcement-card, .card"
-    );
-
-  cards.forEach(function (card) {
-
-    const position =
-      card.getBoundingClientRect().top;
-
-    if (position < window.innerHeight - 100) {
-
-      card.classList.add("show");
-
-    }
-
-  });
-
-});
-
-/* =========================================================
-   ANNOUNCEMENTS SYSTEM
-========================================================= */
-
-let announcements =
-  JSON.parse(localStorage.getItem("announcements")) || [];
-
-let editIndex = null;
-
-let isAdmin = false;
-
-/* =========================================================
-   ADMIN LOGIN
-========================================================= */
-
-function loginAdmin() {
-
-  const passwordInput =
-    document.getElementById("adminPassword");
-
-  const status =
-    document.getElementById("adminStatus");
-
-  if (!passwordInput || !status) return;
+// login function (teacher or student)
+function loginUser(role) {
 
   const password =
-    passwordInput.value.trim();
+    document.getElementById("loginPassword").value.trim();
 
-  // PASSWORD
+  const status =
+    document.getElementById("loginStatus");
 
-  if (password === "admin") {
+  if (!password) return;
 
-    isAdmin = true;
+  // SIMPLE PASSWORD SYSTEM (you can improve later)
+  const teacherPass = "teacher123";
+  const studentPass = "student123";
 
-    const form =
-      document.getElementById("announcementForm");
+  if (password === teacherPass && role === "teacher") {
 
-    const loginBox =
-      document.getElementById("adminLoginBox");
+    currentUser = { role: "teacher" };
 
-    if (form) {
+    showPopup("Teacher login successful");
 
-      form.style.display = "block";
+    document.getElementById("loginBox").style.display = "none";
 
-    }
+    showAnnouncements();
 
-    if (loginBox) {
+  }
 
-      loginBox.style.display = "none";
+  else if (password === studentPass && role === "student") {
 
-    }
+    currentUser = { role: "student" };
 
-    renderAnnouncements();
+    showPopup("Student login successful");
 
-    showPopup(
-      "Admin login successful."
-    );
+    document.getElementById("loginBox").style.display = "none";
 
-  } else {
+    showChat();
+    showResources();
 
-    status.textContent =
-      "Wrong password.";
+  }
 
+  else {
+
+    status.textContent = "Wrong password";
     status.style.color = "red";
 
   }
@@ -326,303 +58,232 @@ function loginAdmin() {
 }
 
 /* =========================================================
-   POPUP NOTIFICATION
+   POPUP
 ========================================================= */
 
 function showPopup(message) {
 
-  const popup =
-    document.createElement("div");
+  const popup = document.createElement("div");
 
-  popup.className =
-    "popup-notification";
+  popup.className = "popup-notification";
 
-  popup.textContent =
-    message;
+  popup.textContent = message;
 
   document.body.appendChild(popup);
 
-  setTimeout(function () {
-
-    popup.remove();
-
-  }, 2500);
+  setTimeout(() => popup.remove(), 2500);
 
 }
 
 /* =========================================================
-   TIME AGO
+   ANNOUNCEMENTS (TEACHER ONLY)
 ========================================================= */
 
-function timeAgo(date) {
+let announcements =
+  JSON.parse(localStorage.getItem("announcements")) || [];
 
-  let seconds =
-    Math.floor(
-      (new Date() - new Date(date)) / 1000
-    );
+function addAnnouncement() {
 
-  if (seconds < 60) {
-
-    return "Just now";
-
+  if (!currentUser || currentUser.role !== "teacher") {
+    showPopup("Only teachers can post announcements");
+    return;
   }
 
-  let minutes =
-    Math.floor(seconds / 60);
+  const title =
+    document.getElementById("announcementTitle").value.trim();
 
-  if (minutes < 60) {
+  const message =
+    document.getElementById("announcementMessage").value.trim();
 
-    return `${minutes} min ago`;
+  if (!title || !message) return;
 
-  }
+  announcements.unshift({
+    title,
+    message,
+    time: new Date()
+  });
 
-  let hours =
-    Math.floor(minutes / 60);
+  localStorage.setItem("announcements", JSON.stringify(announcements));
 
-  if (hours < 24) {
+  document.getElementById("announcementForm").reset();
 
-    return `${hours} hr ago`;
-
-  }
-
-  let days =
-    Math.floor(hours / 24);
-
-  return `${days} days ago`;
+  showAnnouncements();
 
 }
 
-/* =========================================================
-   RENDER ANNOUNCEMENTS
-========================================================= */
+function showAnnouncements() {
 
-function renderAnnouncements() {
-
-  const container =
+  const box =
     document.getElementById("announcementContainer");
 
-  if (!container) return;
+  if (!box) return;
 
-  container.innerHTML = "";
+  box.innerHTML = "";
 
-  announcements.forEach(function (a, index) {
+  announcements.forEach(a => {
 
-    let adminButtons = "";
-
-    // SHOW ONLY FOR ADMIN
-
-    if (isAdmin) {
-
-      adminButtons = `
-        <div class="announcement-actions">
-
-          <button onclick="editAnnouncement(${index})">
-            Edit
-          </button>
-
-          <button onclick="deleteAnnouncement(${index})">
-            Delete
-          </button>
-
-        </div>
-      `;
-
-    }
-
-    container.innerHTML += `
+    box.innerHTML += `
       <div class="announcement-card">
 
         <h3>${a.title}</h3>
 
         <p>${a.message}</p>
 
-        <small>
-          Posted: ${timeAgo(a.time)}
-        </small>
-
-        ${adminButtons}
+        <small>${new Date(a.time).toLocaleString()}</small>
 
       </div>
     `;
 
   });
 
-  // SAVE
-
-  localStorage.setItem(
-    "announcements",
-    JSON.stringify(announcements)
-  );
-
 }
 
 /* =========================================================
-   ANNOUNCEMENT FORM
+   RESOURCES (STUDENTS)
 ========================================================= */
 
-const announcementForm =
-  document.getElementById("announcementForm");
+let resources =
+  JSON.parse(localStorage.getItem("resources")) || [];
 
-if (announcementForm) {
+function addResource() {
 
-  announcementForm.addEventListener(
-    "submit",
-    function (e) {
-
-      e.preventDefault();
-
-      if (!isAdmin) {
-
-        showPopup(
-          "Please login as admin first."
-        );
-
-        return;
-
-      }
-
-      const title =
-        document.getElementById("announcementTitle").value.trim();
-
-      const message =
-        document.getElementById("announcementMessage").value.trim();
-
-      // VALIDATION
-
-      if (!title || !message) {
-
-        showPopup(
-          "Fill in all fields."
-        );
-
-        return;
-
-      }
-
-      // ADD NEW
-
-      if (editIndex === null) {
-
-        announcements.unshift({
-
-          title,
-          message,
-          time: new Date()
-
-        });
-
-        showPopup(
-          "Announcement posted."
-        );
-
-      }
-
-      // EDIT
-
-      else {
-
-        announcements[editIndex].title =
-          title;
-
-        announcements[editIndex].message =
-          message;
-
-        showPopup(
-          "Announcement updated."
-        );
-
-        editIndex = null;
-
-      }
-
-      // RESET
-
-      announcementForm.reset();
-
-      // REFRESH
-
-      renderAnnouncements();
-
-    }
-  );
-
-}
-
-/* =========================================================
-   DELETE ANNOUNCEMENT
-========================================================= */
-
-function deleteAnnouncement(index) {
-
-  if (!isAdmin) {
-
-    showPopup(
-      "Admin only action."
-    );
-
+  if (!currentUser || currentUser.role !== "student") {
+    showPopup("Only students can upload resources");
     return;
-
   }
 
-  announcements.splice(index, 1);
+  const name =
+    document.getElementById("studentName").value.trim();
 
-  renderAnnouncements();
+  const title =
+    document.getElementById("title").value.trim();
 
-  showPopup(
-    "Announcement deleted."
-  );
+  const link =
+    document.getElementById("link").value.trim();
+
+  if (!name || !title || !link) return;
+
+  resources.unshift({
+    name,
+    title,
+    link,
+    time: new Date()
+  });
+
+  localStorage.setItem("resources", JSON.stringify(resources));
+
+  showResources();
+
+}
+
+function showResources() {
+
+  const box =
+    document.getElementById("resourceContainer");
+
+  if (!box) return;
+
+  box.innerHTML = "";
+
+  resources.forEach(r => {
+
+    box.innerHTML += `
+      <div class="resource-card">
+
+        <h3>${r.title}</h3>
+
+        <p>By: ${r.name}</p>
+
+        <a href="${r.link}" target="_blank">
+          Open
+        </a>
+
+        <small>${new Date(r.time).toLocaleString()}</small>
+
+      </div>
+    `;
+
+  });
 
 }
 
 /* =========================================================
-   EDIT ANNOUNCEMENT
+   CHAT (STUDENTS ONLY)
 ========================================================= */
 
-function editAnnouncement(index) {
+let chat =
+  JSON.parse(localStorage.getItem("chat")) || [];
 
-  if (!isAdmin) {
+function sendMessage() {
 
-    showPopup(
-      "Admin only action."
-    );
-
+  if (!currentUser || currentUser.role !== "student") {
+    showPopup("Only students can chat");
     return;
-
   }
 
-  document.getElementById(
-    "announcementTitle"
-  ).value =
-    announcements[index].title;
+  const name =
+    document.getElementById("chatName").value.trim();
 
-  document.getElementById(
-    "announcementMessage"
-  ).value =
-    announcements[index].message;
+  const message =
+    document.getElementById("chatMessage").value.trim();
 
-  editIndex = index;
+  if (!name || !message) return;
+
+  chat.push({
+    name,
+    message,
+    time: new Date()
+  });
+
+  localStorage.setItem("chat", JSON.stringify(chat));
+
+  document.getElementById("chatMessage").value = "";
+
+  showChat();
+
+}
+
+function showChat() {
+
+  const box =
+    document.getElementById("chatBox");
+
+  if (!box) return;
+
+  box.innerHTML = "";
+
+  chat.forEach(c => {
+
+    box.innerHTML += `
+      <div class="chat-message">
+
+        <strong>${c.name}</strong>
+
+        <p>${c.message}</p>
+
+        <small>${new Date(c.time).toLocaleTimeString()}</small>
+
+      </div>
+    `;
+
+  });
 
 }
 
 /* =========================================================
-   INIT
+   INIT LOAD
 ========================================================= */
 
-renderAnnouncements();
+showAnnouncements();
+showResources();
+showChat();
 
 /* =========================================================
    GLOBAL FUNCTIONS
 ========================================================= */
 
-window.loginAdmin =
-  loginAdmin;
-
-window.editAnnouncement =
-  editAnnouncement;
-
-window.deleteAnnouncement =
-  deleteAnnouncement;
-
-window.deleteResource =
-  deleteResource;
+window.loginUser = loginUser;
+window.addAnnouncement = addAnnouncement;
+window.addResource = addResource;
+window.sendMessage = sendMessage;
 
