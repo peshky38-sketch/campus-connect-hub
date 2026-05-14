@@ -1,56 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Announcements</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <link rel="stylesheet" href="css/style.css">
+  <title>Announcements | Campus Connect Hub</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
 
 <body class="screen announcements">
 
-  <!-- HEADER -->
-  <header>
-    <nav>
-      <h1>Campus Connect Hub</h1>
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="add.html">Add Resource</a></li>
-        <li><a href="announcements.html">Announcements</a></li>
+  <header class="main-header">
+
+    <nav class="navbar">
+
+      <!-- LOGO -->
+
+      <div class="logo-container">
+
+        <img
+          src="./assets/images/logo.png"
+          alt="Campus Connect Hub Logo"
+          class="logo-img"
+        >
+
+        <span class="logo-text">
+          Campus Connect Hub
+        </span>
+
+      </div>
+
+      <!-- NAVIGATION -->
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="index.html">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="about.html">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a href="resources.html">
+            Resources
+          </a>
+        </li>
+
+        <li>
+          <a href="add.html">
+            Add Resource
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="announcements.html"
+            class="active"
+          >
+            Announcements
+          </a>
+        </li>
+
       </ul>
+
+      <!-- DARK MODE BUTTON -->
+
+      <button
+        id="darkModeBtn"
+        class="dark-btn"
+      >
+        Dark Mode
+      </button>
+
     </nav>
+
   </header>
+
+  <!-- =========================
+       MAIN
+  ========================== -->
 
   <main>
 
-    <!-- =============================== -->
-    <!-- ADMIN LOGIN -->
-    <!-- =============================== -->
-    <div id="adminLoginBox">
-      <input type="password" id="adminPassword" placeholder="Enter admin password">
-      <button type="button" onclick="loginAdmin()">Login</button>
-      <p id="adminStatus"></p>
-    </div>
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
 
-    <!-- =============================== -->
-    <!-- ANNOUNCEMENT FORM -->
-    <!-- =============================== -->
+    <section class="announcement-hero">
+
+      <h1>
+        Campus Announcements
+      </h1>
+
+      <p>
+        Stay updated with academic news,
+        deadlines, events and important notices.
+      </p>
+
+    </section>
+
+    <!-- =========================
+         ADMIN LOGIN
+    ========================== -->
+
+    <section class="admin-login-section">
+
+      <div id="adminLoginBox">
+
+        <h2>
+          Admin Login
+        </h2>
+
+        <input
+          type="password"
+          id="adminPassword"
+          placeholder="Enter admin password"
+        >
+
+        <button
+          type="button"
+          onclick="loginAdmin()"
+        >
+          Login
+        </button>
+
+        <p id="adminStatus"></p>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         ANNOUNCEMENT FORM
+    ========================== -->
+
     <section class="announcement-form-section">
 
       <div class="announcement-form-container">
 
-        <h2>Share Announcement</h2>
+        <h2>
+          Share Announcement
+        </h2>
 
         <p class="announcement-subtitle">
-          Post important academic updates for students.
+          Post important academic updates
+          for students.
         </p>
 
-        <form id="announcementForm" style="display:none;">
+        <!-- FORM HIDDEN UNTIL LOGIN -->
+
+        <form
+          id="announcementForm"
+          style="display:none;"
+        >
+
+          <!-- TITLE -->
 
           <input
             type="text"
@@ -59,11 +184,15 @@
             required
           >
 
+          <!-- MESSAGE -->
+
           <textarea
             id="announcementMessage"
             placeholder="Write your announcement here..."
             required
           ></textarea>
+
+          <!-- SUBMIT -->
 
           <button type="submit">
             Post Announcement
@@ -71,30 +200,57 @@
 
         </form>
 
+        <!-- MESSAGE -->
+
         <p id="announcementMessageBox"></p>
 
       </div>
 
     </section>
 
-    <!-- DISPLAY -->
+    <!-- =========================
+         ANNOUNCEMENTS DISPLAY
+    ========================== -->
+
     <section class="announcement-section">
 
-      <h2>Latest Announcements</h2>
+      <div class="section-header">
 
-      <div id="announcementContainer"></div>
+        <h2>
+          Latest Announcements
+        </h2>
+
+      </div>
+
+      <!-- JS RENDERS HERE -->
+
+      <div id="announcementContainer">
+
+      </div>
 
     </section>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
-    <p>© 2026 Campus Connect Hub | Education is life</p>
+
+    <p>
+      © 2026 Campus Connect Hub |
+      Education is life
+    </p>
+
   </footer>
 
-  <!--  FIXED SCRIPT LINK -->
+  <!-- =========================
+       SCRIPT
+  ========================== -->
+
   <script src="js/script.js"></script>
 
 </body>
+
 </html>
