@@ -31,3 +31,21 @@ if (resourceForm) {
 
     const message =
       document.getElementById("message");
+
+      // VALIDATION
+
+    if (
+      studentName === "" ||
+      subject === "" ||
+      title === "" ||
+      description === "" ||
+      link === ""
+    ) {
+
+      message.style.color = "red";
+
+      message.textContent =
+        "Please fill in all fields.";
+
+      return;
+    }
