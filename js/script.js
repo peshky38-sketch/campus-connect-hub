@@ -307,3 +307,12 @@ const cards =
 
 const announcementForm =
 document.getElementById("announcementForm");
+
+if (announcementForm) {
+
+  announcementForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const title =
+    document.getElementById("announcementTitle").value;
