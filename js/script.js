@@ -395,7 +395,7 @@ document.getElementById("announcementForm").addEventListener("submit", function 
   e.preventDefault();
 
   if (!isAdmin) {
-    showPopup("Please login as admin first 🔐");
+    showPopup("Please login as admin first ");
     return;
   }
 
@@ -414,7 +414,7 @@ document.getElementById("announcementForm").addEventListener("submit", function 
       time: new Date()
     });
 
-    showPopup("Announcement posted 📢");
+    showPopup("Announcement posted ");
   } else {
     announcements[editIndex].title = title;
     announcements[editIndex].message = message;
@@ -432,14 +432,14 @@ document.getElementById("announcementForm").addEventListener("submit", function 
 // ==============================
 function deleteAnnouncement(index) {
   if (!isAdmin) {
-    showPopup("Admin only action 🔐");
+    showPopup("Admin only action ");
     return;
   }
 
   announcements.splice(index, 1);
   renderAnnouncements();
 
-  showPopup("Announcement deleted 🗑️");
+  showPopup("Announcement deleted ");
 }
 
 // ==============================
@@ -447,7 +447,7 @@ function deleteAnnouncement(index) {
 // ==============================
 function editAnnouncement(index) {
   if (!isAdmin) {
-    showPopup("Admin only action 🔐");
+    showPopup("Admin only action ");
     return;
   }
 
