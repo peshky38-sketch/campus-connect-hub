@@ -83,6 +83,11 @@ https://peshky38-sketch.github.io/campus-connect-hub/
 - Add file uploads for resources  
 
 ---
+ ## Google Slides Presentation
+
+[View Presentation Slides](https://docs.google.com/presentation/d/1J8b9sFDzf42fuIZVP0RAsNfZRJOlRWNodqpSvs__ESQ/edit?usp=sharing)
+
+---
 
 ## License
 This project is for educational purposes only.
