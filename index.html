@@ -1,88 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
   <title>Campus Connect Hub</title>
 
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="screen home">
 
-<header>
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-  <nav>
+  <header class="main-header">
 
-    <div class="logo-container">
-      <img src="./assets/images/logo.png" alt="Campus Connect Hub" class="logo-img">
+    <nav class="navbar">
 
-      <span class="logo-text">
-        Campus Connect
-      </span>
-    </div>
+      <!-- LOGO -->
 
-    <ul>
-      <li><a href="index.html">Home</a></li>
+      <div class="logo-container">
 
-      <li><a href="about.html">About</a></li>
+        <img
+          src="./assets/images/logo.png"
+          alt="Campus Connect Hub Logo"
+          class="logo-img"
+        >
 
-      <li><a href="resources.html">Resources</a></li>
+        <span class="logo-text">
+          Campus Connect Hub
+        </span>
 
-      <li><a href="add.html">Add Resource</a></li>
+      </div>
 
-      <li><a href="announcements.html">Announcements</a></li>
-    </ul>
+      <!-- NAVIGATION -->
 
-  </nav>
+      <ul class="nav-links">
 
-</header>
+        <li>
+          <a href="index.html" class="active">
+            Home
+          </a>
+        </li>
 
-<main>
+        <li>
+          <a href="about.html">
+            About
+          </a>
+        </li>
 
-  <section class="hero">
+        <li>
+          <a href="resources.html">
+            Resources
+          </a>
+        </li>
 
-    <h2>
-      Your Academic Success Starts Here
-    </h2>
+        <li>
+          <a href="add.html">
+            Add Resource
+          </a>
+        </li>
+
+        <li>
+          <a href="announcements.html">
+            Announcements
+          </a>
+        </li>
+
+        <li>
+          <a href="chat.html">
+            Chat
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- DARK MODE -->
+
+      <button id="darkModeBtn" class="dark-btn">
+        🌙
+      </button>
+
+    </nav>
+
+  </header>
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <h2>
+          Your Academic Success Starts Here
+        </h2>
+
+        <p>
+          Share study resources, collaborate with students,
+          stay updated through announcements and build a smarter
+          learning community.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="resources.html" class="btn">
+            Explore Resources
+          </a>
+
+          <a href="announcements.html" class="btn secondary-btn">
+            View Announcements
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         STATS SECTION
+    ========================== -->
+
+    <section class="stats">
+
+      <div class="card">
+
+        <h3 id="resourceCount">
+          0
+        </h3>
+
+        <p>
+          Resources Shared
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3 id="announcementCount">
+          0
+        </h3>
+
+        <p>
+          Announcements Posted
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>
+          24/7
+        </h3>
+
+        <p>
+          Student Collaboration
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="features">
+
+      <h2 class="section-title">
+        Platform Features
+      </h2>
+
+      <div class="features-grid">
+
+        <!-- RESOURCE SHARING -->
+
+        <div class="feature-card">
+
+          <h3>
+             Resource Sharing
+          </h3>
+
+          <p>
+            Students can upload notes, PDFs,
+            links and learning materials.
+          </p>
+
+        </div>
+
+        <!-- ANNOUNCEMENTS -->
+
+        <div class="feature-card">
+
+          <h3>
+             Announcements
+          </h3>
+
+          <p>
+            Teachers can share official
+            academic updates instantly.
+          </p>
+
+        </div>
+
+        <!-- CHAT -->
+
+        <div class="feature-card">
+
+          <h3>
+             Student Chat
+          </h3>
+
+          <p>
+            Collaborate and communicate
+            with classmates in real time.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
 
     <p>
-      Share resources, manage assignments and stay updated academically.
+      © 2026 Campus Connect Hub |
+      Embrace Learning
     </p>
 
-    <a href="resources.html" class="btn">
-      Explore Resources
-    </a>
+  </footer>
 
-  </section>
+  <!-- =========================
+       SCRIPT
+  ========================== -->
 
-  <section class="stats">
-
-    <div class="card">
-
-      <h3 id="resourceCount">
-        0
-      </h3>
-
-      <p>
-        Resources Shared
-      </p>
-
-    </div>
-
-  </section>
-
-</main>
-
-<footer>
-
-  <p>
-    © 2026 Campus Connect Hub | Embrace Learning
-  </p>
-
-</footer>
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
+
 </html>

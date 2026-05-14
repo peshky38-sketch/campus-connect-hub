@@ -167,7 +167,7 @@ function loginAdmin() {
     if (form) form.style.display = "block";
     if (loginBox) loginBox.style.display = "none";
 
-    showPopup("Admin login successful ✔");
+    showPopup("Admin login successful");
   } else {
     status.textContent = "Wrong password!";
     status.style.color = "red";
