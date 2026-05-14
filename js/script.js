@@ -281,3 +281,5 @@ const cards =
   document.querySelectorAll(
     ".resource-card, .announcement-card, .card"
   );
+
+  window.addEventListener("scroll", function () {
