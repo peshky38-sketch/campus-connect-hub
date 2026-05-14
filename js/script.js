@@ -315,3 +315,18 @@ function editAnnouncement(index) {
 ========================= */
 
 renderAnnouncements();
+
+/* =========================
+   INIT
+========================= */
+
+renderAnnouncements();
+
+/* =========================
+   GLOBAL FUNCTIONS
+========================= */
+
+window.loginAdmin = loginAdmin;
+window.editAnnouncement = editAnnouncement;
+window.deleteAnnouncement = deleteAnnouncement;
+
